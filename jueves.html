@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte de Próximas Entregas: Jueves - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      .summary-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4a6fa5;
+      }
+
+      .summary-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #4a6fa5;
+      }
+
+      .summary-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .summary-item {
+        flex: 1 0 30%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .summary-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .summary-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .upcoming-deadlines .section-header {
+        background-color: #e74c3c;
+      }
+
+      .preparation-needs .section-header {
+        background-color: #f39c12;
+      }
+
+      .weekend-strategy .section-header {
+        background-color: #2ecc71;
+      }
+
+      .momentum-index .section-header {
+        background-color: #3498db;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Deadline cards */
+      .deadline-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .deadline-card {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid;
+      }
+
+      .card-today {
+        border-color: #e74c3c;
+      }
+
+      .card-tomorrow {
+        border-color: #f39c12;
+      }
+
+      .card-weekend {
+        border-color: #3498db;
+      }
+
+      .card-next-week {
+        border-color: #9b59b6;
+      }
+
+      .deadline-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .deadline-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+        color: #4a6fa5;
+      }
+
+      .countdown {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      .countdown.medium {
+        color: #f39c12;
+      }
+
+      .countdown.safe {
+        color: #27ae60;
+      }
+
+      .deadline-assignments {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      .deadline-assignment {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .deadline-assignment:last-child {
+        border-bottom: none;
+      }
+
+      .assignment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .assignment-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin: 0;
+      }
+
+      .assignment-subject {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .assignment-details {
+        margin: 5px 0 0 0;
+        color: #555;
+        font-size: 14px;
+      }
+
+      /* Preparation Section */
+      .preparation-list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      .preparation-item {
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        border-left: 4px solid #f39c12;
+      }
+
+      .preparation-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .preparation-title {
+        font-weight: bold;
+        margin: 0;
+        color: #f39c12;
+      }
+
+      .preparation-steps {
+        margin: 10px 0 0 0;
+        padding: 0 0 0 20px;
+      }
+
+      .preparation-steps li {
+        margin-bottom: 8px;
+      }
+
+      /* Momentum Index */
+      .momentum-container {
+        margin: 20px 0;
+      }
+
+      .momentum-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .momentum-value {
+        font-size: 32px;
+        font-weight: bold;
+        color: #3498db;
+      }
+
+      .momentum-scale {
+        width: 100%;
+        height: 20px;
+        background-color: #f3f3f3;
+        border-radius: 10px;
+        position: relative;
+        margin: 20px 0;
+      }
+
+      .momentum-scale:before {
+        content: "Perdiendo Terreno";
+        position: absolute;
+        bottom: -25px;
+        left: 10%;
+        font-size: 14px;
+        color: #e74c3c;
+      }
+
+      .momentum-scale:after {
+        content: "Ganando Terreno";
+        position: absolute;
+        bottom: -25px;
+        right: 10%;
+        font-size: 14px;
+        color: #27ae60;
+      }
+
+      .momentum-marker {
+        width: 20px;
+        height: 30px;
+        background-color: #3498db;
+        border-radius: 3px;
+        position: absolute;
+        top: -5px;
+        left: 70%;
+        transform: translateX(-50%);
+      }
+
+      .momentum-marker:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #3498db;
+      }
+
+      .momentum-subjects {
+        margin-top: 40px;
+      }
+
+      .momentum-subject {
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+      }
+
+      .momentum-subject-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .momentum-subject-name {
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .momentum-subject-value {
+        font-weight: bold;
+      }
+
+      .momentum-subject-value.positive {
+        color: #27ae60;
+      }
+
+      .momentum-subject-value.negative {
+        color: #e74c3c;
+      }
+
+      .momentum-subject-desc {
+        font-size: 14px;
+        color: #7f8c8d;
+      }
+
+      /* Calendar view */
+      .mini-calendar {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      .mini-calendar th {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+        color: #4a6fa5;
+        font-weight: bold;
+      }
+
+      .mini-calendar td {
+        border: 1px solid #ddd;
+        padding: 8px 4px;
+        vertical-align: top;
+        height: 80px;
+      }
+
+      .today-cell {
+        background-color: #e8f4fd;
+      }
+
+      .weekend-cell {
+        background-color: #f8f9fa;
+      }
+
+      .calendar-date {
+        text-align: right;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      .calendar-event {
+        background-color: #e8f4fd;
+        font-size: 11px;
+        padding: 2px 4px;
+        border-radius: 3px;
+        margin-bottom: 3px;
+        border-left: 2px solid #3498db;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .calendar-assignment {
+        background-color: #fadbd8;
+        border-left-color: #e74c3c;
+      }
+
+      .calendar-exam {
+        background-color: #fcf3cf;
+        border-left-color: #f39c12;
+      }
+
+      .calendar-project {
+        background-color: #d4efdf;
+        border-left-color: #27ae60;
+      }
+
+      /* View details button */
+      .view-in-classity {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .view-in-classity:hover {
+        background-color: #3d5c8c;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .summary-item {
+          flex: 1 0 100%;
+        }
+
+        .student-name {
+          font-size: 18px;
+        }
+
+        .section-header {
+          font-size: 16px;
+        }
+
+        .deadline-header {
+          flex-direction: column;
+        }
+
+        .countdown {
+          margin-top: 5px;
+        }
+
+        .mini-calendar th,
+        .mini-calendar td {
+          padding: 5px 2px;
+          font-size: 11px;
+        }
+
+        .calendar-event {
+          font-size: 9px;
+          padding: 1px 2px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img src="cid:cedrosLogo" alt="Colegio Cedros" class="logo" />
+          <img src="cid:classityLogo" alt="Classity" class="classity-logo" />
+        </div>
+        <h1>Reporte de Próximas Entregas: Jueves</h1>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- Weekly Progress Overview -->
+      <div class="summary-container">
+        <h3 class="summary-title">Panorama de Entregas Próximas</h3>
+        <div class="summary-data">
+          <div class="summary-item">
+            <div class="summary-label">Hoy</div>
+            <div class="summary-value">1</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Mañana</div>
+            <div class="summary-value">2</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Fin de Semana</div>
+            <div class="summary-value">3</div>
+          </div>
+        </div>
+
+        <!-- EPIC Component Summary -->
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 15px;
+          "
+        >
+          <div
+            style="
+              flex: 1 0 45%;
+              padding: 10px;
+              margin-bottom: 10px;
+              border-radius: 5px;
+              background-color: #f8f9fa;
+            "
+          >
+            <div
+              style="
+                font-weight: bold;
+                color: #4a6fa5;
+                margin: 0 0 5px 0;
+                display: flex;
+                justify-content: space-between;
+              "
+            >
+              <span>Cumplimiento</span>
+              <span style="font-size: 20px; font-weight: bold; color: #f39c12"
+                >78%</span
+              >
+            </div>
+            <p style="font-size: 12px; color: #666; margin: 5px 0 0 0">
+              Tasa de entrega oportuna de actividades
+            </p>
+          </div>
+
+          <div
+            style="
+              flex: 1 0 45%;
+              padding: 10px;
+              margin-bottom: 10px;
+              border-radius: 5px;
+              background-color: #f8f9fa;
+            "
+          >
+            <div
+              style="
+                font-weight: bold;
+                color: #4a6fa5;
+                margin: 0 0 5px 0;
+                display: flex;
+                justify-content: space-between;
+              "
+            >
+              <span>Rendimiento</span>
+              <span style="font-size: 20px; font-weight: bold; color: #27ae60"
+                >85%</span
+              >
+            </div>
+            <p style="font-size: 12px; color: #666; margin: 5px 0 0 0">
+              Promedio académico basado en calificaciones
+            </p>
+          </div>
+        </div>
+
+        <!-- View in Classity Button -->
+        <a
+          href="https://app.classity.app/student/deadlines?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Panel Completo en Classity →</a
+        >
+      </div>
+
+      <!-- Upcoming Deadlines Section -->
+      <div class="section upcoming-deadlines">
+        <h3 class="section-header">
+          Próximas Fechas de Entrega
+          <span class="badge">Prioridad Alta</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Las siguientes actividades académicas tienen fechas de entrega
+            próximas y requieren atención prioritaria:
+          </p>
+
+          <!-- Deadline Cards -->
+          <div class="deadline-cards">
+            <div class="deadline-card card-today">
+              <div class="deadline-header">
+                <h4 class="deadline-title">Para Hoy (15 de Mayo)</h4>
+                <span class="countdown">Vence hoy</span>
+              </div>
+              <ul class="deadline-assignments">
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">Present Perfect: Dialog</h5>
+                    <span class="assignment-subject">2. Inglés</span>
+                  </div>
+                  <p class="assignment-details">
+                    Crear un diálogo utilizando al menos 5 ejemplos del Present
+                    Perfect en una situación cotidiana.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="deadline-card card-tomorrow">
+              <div class="deadline-header">
+                <h4 class="deadline-title">Para Mañana (16 de Mayo)</h4>
+                <span class="countdown medium">Vence en 1 día</span>
+              </div>
+              <ul class="deadline-assignments">
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">
+                      Cuestionario: La Revolución Industrial
+                    </h5>
+                    <span class="assignment-subject">2. Historia</span>
+                  </div>
+                  <p class="assignment-details">
+                    Responder el cuestionario sobre causas, desarrollo y
+                    consecuencias de la Revolución Industrial.
+                  </p>
+                </li>
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">Examen: Matemáticas</h5>
+                    <span class="assignment-subject">2. Matemáticas</span>
+                  </div>
+                  <p class="assignment-details">
+                    Evaluación sobre funciones, gráficas y ecuaciones
+                    cuadráticas. Representa el 20% de la calificación
+                    trimestral.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="deadline-card card-weekend">
+              <div class="deadline-header">
+                <h4 class="deadline-title">
+                  Para el Fin de Semana (17-19 de Mayo)
+                </h4>
+                <span class="countdown safe">2-4 días restantes</span>
+              </div>
+              <ul class="deadline-assignments">
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">
+                      Proyecto: Modelado de Funciones
+                    </h5>
+                    <span class="assignment-subject">2. Matemáticas</span>
+                  </div>
+                  <p class="assignment-details">
+                    Creación de modelos matemáticos para situaciones cotidianas
+                    utilizando funciones lineales y cuadráticas.
+                  </p>
+                </li>
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">
+                      Informe de Laboratorio: Reacciones Químicas
+                    </h5>
+                    <span class="assignment-subject">2. Química</span>
+                  </div>
+                  <p class="assignment-details">
+                    Redacción del informe final sobre la práctica virtual de
+                    tipos de reacciones químicas.
+                  </p>
+                </li>
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">
+                      Investigación: Ecosistemas Terrestres
+                    </h5>
+                    <span class="assignment-subject">2. Biología</span>
+                  </div>
+                  <p class="assignment-details">
+                    Complemento a la investigación de ecosistemas acuáticos,
+                    enfocado en ecosistemas terrestres y su biodiversidad.
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="deadline-card card-next-week">
+              <div class="deadline-header">
+                <h4 class="deadline-title">Próxima Semana (20-24 de Mayo)</h4>
+                <span class="countdown safe">5+ días restantes</span>
+              </div>
+              <ul class="deadline-assignments">
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">
+                      Proyecto Colaborativo: Presentación en Inglés
+                    </h5>
+                    <span class="assignment-subject">2. Inglés</span>
+                  </div>
+                  <p class="assignment-details">
+                    Preparación de una presentación grupal sobre un tema
+                    cultural de países angloparlantes.
+                  </p>
+                </li>
+                <li class="deadline-assignment">
+                  <div class="assignment-header">
+                    <h5 class="assignment-title">Examen Parcial: Biología</h5>
+                    <span class="assignment-subject">2. Biología</span>
+                  </div>
+                  <p class="assignment-details">
+                    Evaluación sobre ecosistemas, biodiversidad e interacciones
+                    entre especies.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Deadlines Timeline -->
+      <div class="section weekend-strategy">
+        <h3 class="section-header">
+          Vista de Calendario
+          <span class="badge">Próximos 4 Días</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Aquí puedes ver una visión general de los próximos días con tus
+            actividades académicas programadas:
+          </p>
+
+          <!-- Calendar View -->
+          <table class="mini-calendar">
+            <tr>
+              <th>Jueves (Hoy)</th>
+              <th>Viernes</th>
+              <th>Sábado</th>
+              <th>Domingo</th>
+            </tr>
+            <tr>
+              <td class="today-cell">
+                <div class="calendar-date">15/05</div>
+                <div class="calendar-event calendar-assignment">
+                  Dialog Inglés
+                </div>
+              </td>
+              <td>
+                <div class="calendar-date">16/05</div>
+                <div class="calendar-event calendar-exam">
+                  Examen: Matemáticas
+                </div>
+                <div class="calendar-event calendar-assignment">
+                  Cuestionario Historia
+                </div>
+              </td>
+              <td class="weekend-cell">
+                <div class="calendar-date">17/05</div>
+                <div class="calendar-event calendar-project">
+                  Proyecto Matemáticas
+                </div>
+              </td>
+              <td class="weekend-cell">
+                <div class="calendar-date">18/05</div>
+                <div class="calendar-event calendar-assignment">
+                  Investigación Biología
+                </div>
+                <div class="calendar-event calendar-assignment">
+                  Informe Química
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            style="
+              background-color: #e8f4fd;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Distribución de Actividades
+            </h4>
+            <p>
+              Las actividades presentadas en el calendario se han extraído de la
+              información disponible en el sistema. El viernes será un día con
+              mayor carga académica, con dos entregas importantes programadas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Momentum Index Section (NEW) -->
+      <div class="section momentum-index">
+        <h3 class="section-header">
+          Índice de Momentum Académico
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <div class="momentum-container">
+            <div class="momentum-header">
+              <h4 style="margin-top: 0; color: #3498db">Tu Momentum Actual:</h4>
+              <div class="momentum-value">+5.2</div>
+            </div>
+
+            <div class="momentum-scale">
+              <div class="momentum-marker"></div>
+            </div>
+
+            <p style="text-align: center; margin-top: 30px">
+              Este índice muestra si estás avanzando más rápido que tus
+              compañeros de 2° grado en las últimas 2 semanas.
+            </p>
+
+            <div class="momentum-subjects">
+              <h4 style="color: #3498db">Materias con Mayor Momentum:</h4>
+
+              <div class="momentum-subject">
+                <div class="momentum-subject-header">
+                  <span class="momentum-subject-name">Matemáticas</span>
+                  <span class="momentum-subject-value positive">+8.7</span>
+                </div>
+                <p class="momentum-subject-desc">
+                  Mejora superior al 95% de tus compañeros
+                </p>
+              </div>
+
+              <div class="momentum-subject">
+                <div class="momentum-subject-header">
+                  <span class="momentum-subject-name">Inglés</span>
+                  <span class="momentum-subject-value positive">+6.2</span>
+                </div>
+                <p class="momentum-subject-desc">
+                  Mejora superior al 85% de tus compañeros
+                </p>
+              </div>
+
+              <h4 style="color: #3498db; margin-top: 20px">
+                Materias con Menor Momentum:
+              </h4>
+
+              <div class="momentum-subject">
+                <div class="momentum-subject-header">
+                  <span class="momentum-subject-name">Historia</span>
+                  <span class="momentum-subject-value negative">-2.3</span>
+                </div>
+                <p class="momentum-subject-desc">Necesita atención</p>
+              </div>
+            </div>
+
+            <div
+              style="
+                background-color: #e8f4fd;
+                border-radius: 5px;
+                padding: 15px;
+                margin-top: 20px;
+                border-left: 4px solid #3498db;
+              "
+            >
+              <h4 style="color: #3498db; margin-top: 0">
+                💡 Análisis de Momentum
+              </h4>
+              <p>
+                Tu momentum positivo te coloca entre el 25% de estudiantes con
+                mayor progreso reciente en 2° grado. Esta tendencia positiva se
+                debe principalmente a tu excelente desempeño en Matemáticas e
+                Inglés.
+              </p>
+              <p style="margin-bottom: 0">
+                El cuestionario de Historia que debes entregar mañana es una
+                buena oportunidad para mejorar el momentum en esta materia que
+                actualmente muestra un valor negativo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Looking Ahead Section -->
+      <div class="section" style="margin-bottom: 30px">
+        <h3 class="section-header" style="background-color: #9b59b6">
+          Actividades de la Próxima Semana
+          <span class="badge">Visión General</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Estas son las actividades académicas registradas en el sistema para
+            la próxima semana:
+          </p>
+
+          <table
+            style="width: 100%; border-collapse: collapse; margin-top: 15px"
+          >
+            <tr style="background-color: #f8f9fa; font-weight: bold">
+              <th
+                style="
+                  text-align: left;
+                  padding: 10px;
+                  border-bottom: 2px solid #ddd;
+                "
+              >
+                Día
+              </th>
+              <th
+                style="
+                  text-align: left;
+                  padding: 10px;
+                  border-bottom: 2px solid #ddd;
+                "
+              >
+                Actividad
+              </th>
+              <th
+                style="
+                  text-align: left;
+                  padding: 10px;
+                  border-bottom: 2px solid #ddd;
+                "
+              >
+                Materia
+              </th>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 10px;
+                  border-bottom: 1px solid #eee;
+                  font-weight: bold;
+                "
+              >
+                Lunes 20/05
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                Reunión de Equipo: Proyecto
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                2. Inglés
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 10px;
+                  border-bottom: 1px solid #eee;
+                  font-weight: bold;
+                "
+              >
+                Martes 21/05
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                Inicio de Unidad: Literatura Contemporánea
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                2. Español
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 10px;
+                  border-bottom: 1px solid #eee;
+                  font-weight: bold;
+                "
+              >
+                Miércoles 22/05
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                Examen Parcial
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                2. Biología
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 10px;
+                  border-bottom: 1px solid #eee;
+                  font-weight: bold;
+                "
+              >
+                Jueves 23/05
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                Taller Práctico
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                2. Física
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 10px;
+                  border-bottom: 1px solid #eee;
+                  font-weight: bold;
+                "
+              >
+                Viernes 24/05
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                Presentación Grupal
+              </td>
+              <td style="padding: 10px; border-bottom: 1px solid #eee">
+                2. Inglés
+              </td>
+            </tr>
+          </table>
+
+          <div
+            style="
+              background-color: #f1f9fe;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Resumen de la Próxima Semana
+            </h4>
+            <p>
+              Desde el sistema se observan las siguientes actividades
+              registradas para la próxima semana:
+            </p>
+            <ul style="margin-bottom: 0">
+              <li>
+                <strong>Lunes 20/05:</strong> Reunión de Equipo: Proyecto de
+                Inglés
+              </li>
+              <li>
+                <strong>Miércoles 22/05:</strong> Examen Parcial: Biología
+              </li>
+              <li>
+                <strong>Viernes 24/05:</strong> Presentación Grupal: Inglés
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="generated-date">
+          Reporte generado por Classity el 15/05/2025 a las 06:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.app">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

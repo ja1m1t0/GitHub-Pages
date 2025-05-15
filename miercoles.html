@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Revisión de Mitad de Semana: Miércoles - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      .summary-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4a6fa5;
+      }
+
+      .summary-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #4a6fa5;
+      }
+
+      .summary-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .summary-item {
+        flex: 1 0 30%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .summary-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .summary-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .midweek-check .section-header {
+        background-color: #9b59b6;
+      }
+
+      .performance-quadrant .section-header {
+        background-color: #27ae60;
+      }
+
+      .epic-component .section-header {
+        background-color: #e67e22;
+      }
+
+      .weekly-goals .section-header {
+        background-color: #3498db;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Progress cards */
+      .progress-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .progress-card {
+        flex: 1 0 calc(50% - 15px);
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .card-title {
+        font-weight: bold;
+        color: #4a6fa5;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .progress-value {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .positive {
+        color: #27ae60;
+      }
+
+      .warning {
+        color: #f39c12;
+      }
+
+      .negative {
+        color: #e74c3c;
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        background-color: #eee;
+        border-radius: 10px;
+        height: 10px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .progress-complete {
+        background-color: #27ae60;
+      }
+
+      .progress-partial {
+        background-color: #f39c12;
+      }
+
+      .progress-behind {
+        background-color: #e74c3c;
+      }
+
+      /* Task status */
+      .task-status {
+        margin-top: 15px;
+      }
+
+      .task-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .task-item:last-child {
+        border-bottom: none;
+      }
+
+      .status-indicator {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .status-completed {
+        background-color: #27ae60;
+      }
+
+      .status-in-progress {
+        background-color: #f39c12;
+      }
+
+      .status-pending {
+        background-color: #e74c3c;
+      }
+
+      .task-subject {
+        font-weight: bold;
+        color: #4a6fa5;
+        margin-right: 10px;
+        min-width: 100px;
+      }
+
+      .task-name {
+        flex-grow: 1;
+      }
+
+      .task-due {
+        color: #666;
+        font-size: 14px;
+        min-width: 90px;
+        text-align: right;
+      }
+
+      /* Performance Quadrant */
+      .quadrant-container {
+        width: 100%;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .quadrant-chart {
+        width: 100%;
+        height: 320px;
+        position: relative;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-top: 30px;
+      }
+
+      .quadrant-chart::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background-color: #ddd;
+      }
+
+      .quadrant-chart::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+      }
+
+      .quadrant-label {
+        position: absolute;
+        font-weight: bold;
+        color: #666;
+        font-size: 14px;
+      }
+
+      .quadrant-label.top {
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .quadrant-label.bottom {
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .quadrant-label.left {
+        left: -70px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+      }
+
+      .quadrant-label.right {
+        right: -70px;
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg);
+      }
+
+      .quadrant {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+      }
+
+      .quadrant-1 {
+        background-color: rgba(41, 128, 185, 0.2);
+      }
+
+      .quadrant-2 {
+        background-color: rgba(39, 174, 96, 0.2);
+      }
+
+      .quadrant-3 {
+        background-color: rgba(231, 76, 60, 0.2);
+      }
+
+      .quadrant-4 {
+        background-color: rgba(243, 156, 18, 0.2);
+      }
+
+      .student-position {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: #e74c3c;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+        top: 30%;
+        right: 20%;
+      }
+
+      .quadrant-title {
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .position-details {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 20px;
+        border-left: 4px solid #3498db;
+      }
+
+      .position-details ul {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+      }
+
+      .position-details li {
+        margin-bottom: 5px;
+      }
+
+      /* EPIC Component Comparison */
+      .epic-comparison {
+        margin: 20px 0;
+      }
+
+      .epic-component-row {
+        margin-bottom: 15px;
+      }
+
+      .component-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .component-name {
+        color: #4a6fa5;
+      }
+
+      .component-bar-container {
+        width: 100%;
+        background-color: #eee;
+        border-radius: 10px;
+        height: 15px;
+        overflow: hidden;
+        margin-bottom: 5px;
+      }
+
+      .component-bar {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .performance-bar {
+        background-color: #9c59b6;
+      }
+
+      .consistency-bar {
+        background-color: #e74c3c;
+      }
+
+      .compliance-bar {
+        background-color: #3498db;
+      }
+
+      .workload-bar {
+        background-color: #2ecc71;
+      }
+
+      .comparison-text {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Weekly goals */
+      .goal-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .goal-card {
+        flex: 1 0 calc(50% - 15px);
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .goal-header {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .goal-title {
+        font-weight: bold;
+        color: #4a6fa5;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .goal-status {
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+
+      .goal-description {
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+      }
+
+      /* Recommendations */
+      .recommendations {
+        background-color: #f1f9fe;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 20px;
+        border-left: 4px solid #3498db;
+      }
+
+      .recommendations-title {
+        color: #3498db;
+        margin: 0 0 10px 0;
+        font-weight: bold;
+      }
+
+      .recommendations-list {
+        margin: 10px 0;
+        padding: 0 0 0 20px;
+      }
+
+      .recommendations-list li {
+        margin-bottom: 8px;
+      }
+
+      /* View details button */
+      .view-in-classity {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .view-in-classity:hover {
+        background-color: #3d5c8c;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .summary-item {
+          flex: 1 0 100%;
+        }
+
+        .student-name {
+          font-size: 18px;
+        }
+
+        .section-header {
+          font-size: 16px;
+        }
+
+        .goal-card,
+        .progress-card {
+          flex: 1 0 100%;
+        }
+
+        .task-item {
+          flex-wrap: wrap;
+        }
+
+        .task-due {
+          width: 100%;
+          text-align: left;
+          margin-top: 5px;
+          margin-left: 26px;
+        }
+
+        .quadrant-chart {
+          height: 250px;
+        }
+
+        .quadrant-label.left,
+        .quadrant-label.right {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img src="cid:cedrosLogo" alt="Colegio Cedros" class="logo" />
+          <img src="cid:classityLogo" alt="Classity" class="classity-logo" />
+        </div>
+        <h1>Revisión de Mitad de Semana: Miércoles</h1>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- Weekly Progress Overview -->
+      <div class="summary-container">
+        <h3 class="summary-title">Progreso Semanal: Miércoles</h3>
+        <div class="summary-data">
+          <div class="summary-item">
+            <div class="summary-label">Completadas</div>
+            <div class="summary-value">5</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">En Progreso</div>
+            <div class="summary-value">3</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Pendientes</div>
+            <div class="summary-value">4</div>
+          </div>
+        </div>
+
+        <!-- View in Classity Button -->
+        <a
+          href="https://app.classity.app/student/progress?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Panel Completo en Classity →</a
+        >
+      </div>
+
+      <!-- Mid-Week Check Section -->
+      <div class="section midweek-check">
+        <h3 class="section-header">
+          Revisión de Mitad de Semana
+          <span class="badge">Día 3 de 5</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            A mitad de semana, es importante revisar el progreso hacia los
+            objetivos semanales para realizar ajustes necesarios:
+          </p>
+
+          <!-- Progress Cards -->
+          <div class="progress-cards">
+            <div class="progress-card">
+              <div class="card-header">
+                <h4 class="card-title">Progreso General</h4>
+                <span class="progress-value warning">42%</span>
+              </div>
+              <p>
+                Completado 5 de 12 actividades planificadas para esta semana.
+              </p>
+              <div class="progress-bar-container">
+                <div
+                  class="progress-bar progress-partial"
+                  style="width: 42%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="progress-card">
+              <div class="card-header">
+                <h4 class="card-title">Ritmo Semanal</h4>
+                <span class="progress-value negative">-18%</span>
+              </div>
+              <p>
+                El progreso está ligeramente por debajo del ritmo ideal para
+                mitad de semana (60%).
+              </p>
+              <div class="progress-bar-container">
+                <div
+                  class="progress-bar progress-behind"
+                  style="width: 42%"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Task Status -->
+          <h4 class="summary-title" style="margin-top: 20px">
+            Estado de Actividades
+          </h4>
+          <div class="task-status">
+            <div class="task-item">
+              <div class="status-indicator status-completed"></div>
+              <div class="task-subject">Física</div>
+              <div class="task-name">Problemas de Cinemática</div>
+              <div class="task-due">Completada: Ayer</div>
+            </div>
+            <div class="task-item">
+              <div class="status-indicator status-completed"></div>
+              <div class="task-subject">Español</div>
+              <div class="task-name">Análisis de Texto "El Aleph"</div>
+              <div class="task-due">Completada: Lunes</div>
+            </div>
+            <div class="task-item">
+              <div class="status-indicator status-completed"></div>
+              <div class="task-subject">Matemáticas</div>
+              <div class="task-name">Ecuaciones Cuadráticas</div>
+              <div class="task-due">Completada: Lunes</div>
+            </div>
+            <div class="task-item">
+              <div class="status-indicator status-in-progress"></div>
+              <div class="task-subject">Biología</div>
+              <div class="task-name">Investigación: Ecosistemas</div>
+              <div class="task-due">Vence: Hoy</div>
+            </div>
+            <div class="task-item">
+              <div class="status-indicator status-in-progress"></div>
+              <div class="task-subject">Matemáticas</div>
+              <div class="task-name">Ejercicios</div>
+              <div class="task-due">Vence: Hoy</div>
+            </div>
+            <div class="task-item">
+              <div class="status-indicator status-pending"></div>
+              <div class="task-subject">Inglés</div>
+              <div class="task-name">Present Perfect: Dialog</div>
+              <div class="task-due">Vence: Mañana</div>
+            </div>
+            <div class="task-item">
+              <div class="status-indicator status-pending"></div>
+              <div class="task-subject">Historia</div>
+              <div class="task-name">Cuestionario</div>
+              <div class="task-due">Vence: Viernes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Quadrant Section (New) -->
+      <div class="section performance-quadrant">
+        <h3 class="section-header">
+          Tu Posición en el Cuadrante de Desempeño
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <div class="quadrant-container">
+            <div class="quadrant-chart">
+              <div class="quadrant quadrant-2">
+                <div class="quadrant-title">DESTACAR</div>
+              </div>
+              <div class="quadrant quadrant-1">
+                <div class="quadrant-title">MANTENER</div>
+              </div>
+              <div class="quadrant quadrant-3">
+                <div class="quadrant-title">MEJORAR</div>
+              </div>
+              <div class="quadrant quadrant-4">
+                <div class="quadrant-title">POTENCIAR</div>
+              </div>
+
+              <!-- Student Position Marker -->
+              <div class="student-position"></div>
+
+              <!-- Axis Labels -->
+              <div class="quadrant-label top">Alto Rendimiento</div>
+              <div class="quadrant-label bottom">Bajo Rendimiento</div>
+              <div class="quadrant-label left">Baja Consistencia</div>
+              <div class="quadrant-label right">Alta Consistencia</div>
+            </div>
+
+            <div class="position-details">
+              <h4 style="margin-top: 0; color: #27ae60">⭐ TU POSICIÓN:</h4>
+              <ul>
+                <li>Rendimiento: 80%</li>
+                <li>Consistencia: 75%</li>
+                <li>Superior al 85% de tu grupo</li>
+                <li>Cuadrante: DESTACAR</li>
+              </ul>
+              <p>
+                Estás en el cuadrante DESTACAR, que representa estudiantes con
+                alto rendimiento y buena consistencia. El 12% de los estudiantes
+                de 2° grado se encuentra en este cuadrante.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EPIC Components in Context Section (New) -->
+      <div class="section epic-component">
+        <h3 class="section-header">
+          Componentes EPIC en Contexto
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <div class="epic-comparison">
+            <div class="epic-component-row">
+              <div class="component-header">
+                <span class="component-name">RENDIMIENTO:</span>
+                <span>85%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar performance-bar"
+                  style="width: 85%"
+                ></div>
+              </div>
+              <div class="comparison-text">
+                <span>Superior al 75% en tu grupo</span>
+                <span>Superior al 82% en 2° grado</span>
+              </div>
+            </div>
+
+            <div class="epic-component-row">
+              <div class="component-header">
+                <span class="component-name">CONSISTENCIA:</span>
+                <span>75%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar consistency-bar"
+                  style="width: 75%"
+                ></div>
+              </div>
+              <div class="comparison-text">
+                <span>Superior al 68% en tu grupo</span>
+                <span>Superior al 72% en 2° grado</span>
+              </div>
+            </div>
+
+            <div class="epic-component-row">
+              <div class="component-header">
+                <span class="component-name">CUMPLIMIENTO:</span>
+                <span>92%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar compliance-bar"
+                  style="width: 92%"
+                ></div>
+              </div>
+              <div class="comparison-text">
+                <span>Superior al 88% en tu grupo</span>
+                <span>Superior al 90% en 2° grado</span>
+              </div>
+            </div>
+
+            <div class="epic-component-row">
+              <div class="component-header">
+                <span class="component-name">CARGA:</span>
+                <span>80%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar workload-bar"
+                  style="width: 80%"
+                ></div>
+              </div>
+              <div class="comparison-text">
+                <span>Superior al 65% en tu grupo</span>
+                <span>Superior al 70% en 2° grado</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background-color: #f8f9fa;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #27ae60;
+            "
+          >
+            <h4 style="color: #27ae60; margin-top: 0">💡 DESTACADO</h4>
+            <p style="margin-bottom: 0">
+              Tu Cumplimiento destaca significativamente, colocándote entre los
+              estudiantes más responsables del 2° grado. Este componente refleja
+              tu excelente tasa de entrega oportuna de actividades.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Status Section -->
+      <div class="section weekly-goals">
+        <h3 class="section-header">
+          Estado de Actividades
+          <span class="badge">Mitad de Semana</span>
+        </h3>
+        <div class="section-content">
+          <p>Revisión de tus actividades académicas actualmente asignadas:</p>
+
+          <!-- This section only shows counts of visible/known activities in SimpleSubModel -->
+          <div
+            style="
+              background-color: #f8f9fa;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 15px;
+              border-left: 4px solid #4a6fa5;
+            "
+          >
+            <h4 style="margin-top: 0; color: #4a6fa5">
+              Actividades por Estado
+            </h4>
+
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-top: 15px;
+              "
+            >
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #e8f6f0;
+                  border-radius: 5px;
+                  padding: 12px;
+                  text-align: center;
+                "
+              >
+                <h5 style="margin-top: 0; color: #27ae60">Completadas</h5>
+                <div style="font-size: 24px; font-weight: bold; margin: 10px 0">
+                  5
+                </div>
+                <p style="margin-bottom: 0; font-size: 14px; color: #666">
+                  Actividades entregadas
+                </p>
+              </div>
+
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #fef5e7;
+                  border-radius: 5px;
+                  padding: 12px;
+                  text-align: center;
+                "
+              >
+                <h5 style="margin-top: 0; color: #f39c12">En Progreso</h5>
+                <div style="font-size: 24px; font-weight: bold; margin: 10px 0">
+                  3
+                </div>
+                <p style="margin-bottom: 0; font-size: 14px; color: #666">
+                  Actividades iniciadas
+                </p>
+              </div>
+
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #fde9e8;
+                  border-radius: 5px;
+                  padding: 12px;
+                  text-align: center;
+                "
+              >
+                <h5 style="margin-top: 0; color: #e74c3c">Pendientes</h5>
+                <div style="font-size: 24px; font-weight: bold; margin: 10px 0">
+                  4
+                </div>
+                <p style="margin-bottom: 0; font-size: 14px; color: #666">
+                  Actividades por iniciar
+                </p>
+              </div>
+
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #e8f4fd;
+                  border-radius: 5px;
+                  padding: 12px;
+                  text-align: center;
+                "
+              >
+                <h5 style="margin-top: 0; color: #3498db">Total Visible</h5>
+                <div style="font-size: 24px; font-weight: bold; margin: 10px 0">
+                  12
+                </div>
+                <p style="margin-bottom: 0; font-size: 14px; color: #666">
+                  Actividades asignadas
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity Types - Only showing counts of known activities by type -->
+          <div style="margin-top: 20px">
+            <h4 style="margin-top: 0; color: #4a6fa5">Tipos de Actividades</h4>
+
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-top: 15px;
+              "
+            >
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #f8f9fa;
+                  border-radius: 5px;
+                  padding: 12px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                  "
+                >
+                  <span style="font-weight: bold">Tareas</span>
+                  <span>6 actividades</span>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 8px">
+                  <div
+                    style="
+                      flex-grow: 1;
+                      height: 10px;
+                      background-color: #27ae60;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 1;
+                      height: 10px;
+                      background-color: #f39c12;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 1;
+                      height: 10px;
+                      background-color: #e74c3c;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 5px;
+                    font-size: 12px;
+                    color: #666;
+                  "
+                >
+                  <span>4 completadas</span>
+                  <span>1 en progreso</span>
+                  <span>1 pendiente</span>
+                </div>
+              </div>
+
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #f8f9fa;
+                  border-radius: 5px;
+                  padding: 12px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                  "
+                >
+                  <span style="font-weight: bold">Ejercicios</span>
+                  <span>3 actividades</span>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 8px">
+                  <div
+                    style="
+                      flex-grow: 2;
+                      height: 10px;
+                      background-color: #27ae60;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 1;
+                      height: 10px;
+                      background-color: #f39c12;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 0;
+                      height: 10px;
+                      background-color: #e74c3c;
+                      border-radius: 5px;
+                      width: 0;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 5px;
+                    font-size: 12px;
+                    color: #666;
+                  "
+                >
+                  <span>2 completados</span>
+                  <span>1 en progreso</span>
+                  <span>0 pendientes</span>
+                </div>
+              </div>
+
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #f8f9fa;
+                  border-radius: 5px;
+                  padding: 12px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                  "
+                >
+                  <span style="font-weight: bold">Proyectos</span>
+                  <span>2 actividades</span>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 8px">
+                  <div
+                    style="
+                      flex-grow: 0;
+                      height: 10px;
+                      background-color: #27ae60;
+                      border-radius: 5px;
+                      width: 0;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 0;
+                      height: 10px;
+                      background-color: #f39c12;
+                      border-radius: 5px;
+                      width: 0;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 1;
+                      height: 10px;
+                      background-color: #e74c3c;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 5px;
+                    font-size: 12px;
+                    color: #666;
+                  "
+                >
+                  <span>0 completados</span>
+                  <span>0 en progreso</span>
+                  <span>2 pendientes</span>
+                </div>
+              </div>
+
+              <div
+                style="
+                  flex: 1 0 45%;
+                  background-color: #f8f9fa;
+                  border-radius: 5px;
+                  padding: 12px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 5px;
+                  "
+                >
+                  <span style="font-weight: bold">Evaluaciones</span>
+                  <span>1 actividad</span>
+                </div>
+                <div style="display: flex; gap: 5px; margin-top: 8px">
+                  <div
+                    style="
+                      flex-grow: 1;
+                      height: 10px;
+                      background-color: #27ae60;
+                      border-radius: 5px;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 0;
+                      height: 10px;
+                      background-color: #f39c12;
+                      border-radius: 5px;
+                      width: 0;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      flex-grow: 0;
+                      height: 10px;
+                      background-color: #e74c3c;
+                      border-radius: 5px;
+                      width: 0;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 5px;
+                    font-size: 12px;
+                    color: #666;
+                  "
+                >
+                  <span>1 completada</span>
+                  <span>0 en progreso</span>
+                  <span>0 pendientes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Activities - Based directly on known dueDateTime in SimpleSubModel -->
+          <div
+            style="
+              background-color: #edf7fd;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Próximas Fechas de Entrega
+            </h4>
+            <p>
+              Estas son las actividades con fechas de vencimiento más cercanas:
+            </p>
+            <ul style="margin-bottom: 0">
+              <li>
+                <strong>Hoy (Vence en menos de 24h):</strong>
+                <ul>
+                  <li>Investigación: Ecosistemas (Biología)</li>
+                  <li>Ejercicios (Matemáticas)</li>
+                </ul>
+              </li>
+              <li><strong>Mañana:</strong> Present Perfect: Dialog (Inglés)</li>
+              <li>
+                <strong>Próximos 3 días:</strong> Cuestionario (Historia),
+                Proyecto: Modelado de Funciones (Matemáticas)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Activity View - Based only on visible activities -->
+      <div class="section" style="margin-bottom: 30px">
+        <h3 class="section-header" style="background-color: #3498db">
+          Actividades por Materia
+          <span class="badge">Visión por Asignatura</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Distribución de las actividades visibles actualmente por materia:
+          </p>
+
+          <div style="margin-top: 15px">
+            <div
+              style="
+                margin-bottom: 20px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                padding: 15px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 8px;
+                "
+              >
+                <span style="font-weight: bold; color: #4a6fa5"
+                  >Matemáticas</span
+                >
+                <span>4 actividades</span>
+              </div>
+              <div style="display: flex; gap: 5px; align-items: center">
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #27ae60;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">3 completadas</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #f39c12;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">1 en progreso</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #e74c3c;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span>0 pendientes</span>
+              </div>
+              <div
+                style="
+                  font-style: italic;
+                  margin-top: 8px;
+                  font-size: 14px;
+                  color: #666;
+                "
+              >
+                Próxima entrega: Ejercicios (hoy)
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 20px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                padding: 15px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 8px;
+                "
+              >
+                <span style="font-weight: bold; color: #4a6fa5">Biología</span>
+                <span>3 actividades</span>
+              </div>
+              <div style="display: flex; gap: 5px; align-items: center">
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #27ae60;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">1 completada</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #f39c12;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">1 en progreso</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #e74c3c;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span>1 pendiente</span>
+              </div>
+              <div
+                style="
+                  font-style: italic;
+                  margin-top: 8px;
+                  font-size: 14px;
+                  color: #666;
+                "
+              >
+                Próxima entrega: Investigación: Ecosistemas (hoy)
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 20px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                padding: 15px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 8px;
+                "
+              >
+                <span style="font-weight: bold; color: #4a6fa5">Inglés</span>
+                <span>2 actividades</span>
+              </div>
+              <div style="display: flex; gap: 5px; align-items: center">
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #27ae60;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">0 completadas</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #f39c12;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">1 en progreso</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #e74c3c;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span>1 pendiente</span>
+              </div>
+              <div
+                style="
+                  font-style: italic;
+                  margin-top: 8px;
+                  font-size: 14px;
+                  color: #666;
+                "
+              >
+                Próxima entrega: Present Perfect: Dialog (mañana)
+              </div>
+            </div>
+
+            <div
+              style="
+                margin-bottom: 20px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+                padding: 15px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 8px;
+                "
+              >
+                <span style="font-weight: bold; color: #4a6fa5">Historia</span>
+                <span>3 actividades</span>
+              </div>
+              <div style="display: flex; gap: 5px; align-items: center">
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #27ae60;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">1 completada</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #f39c12;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span style="margin-right: 15px">0 en progreso</span>
+
+                <div
+                  style="
+                    width: 15px;
+                    height: 15px;
+                    background-color: #e74c3c;
+                    border-radius: 50%;
+                  "
+                ></div>
+                <span>2 pendientes</span>
+              </div>
+              <div
+                style="
+                  font-style: italic;
+                  margin-top: 8px;
+                  font-size: 14px;
+                  color: #666;
+                "
+              >
+                Próxima entrega: Cuestionario (viernes)
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              margin-top: 20px;
+              padding: 15px;
+              background-color: #f1f9fe;
+              border-radius: 5px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Nota sobre Actividades
+            </h4>
+            <p style="margin-bottom: 0">
+              Este informe muestra únicamente las actividades actualmente
+              visibles en el sistema. Los profesores pueden asignar nuevas
+              actividades durante el transcurso del período académico.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="generated-date">
+          Reporte generado por Classity el 15/05/2025 a las 07:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.app">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

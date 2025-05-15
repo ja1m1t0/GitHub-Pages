@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Semanal: Lunes - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      .summary-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4a6fa5;
+      }
+
+      .epic-metrics {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      .epic-score {
+        font-size: 28px;
+        font-weight: bold;
+        color: #4a6fa5;
+        text-align: center;
+        margin: 10px 0;
+      }
+
+      .summary-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #4a6fa5;
+      }
+
+      .summary-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .summary-item {
+        flex: 1 0 30%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .summary-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .summary-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .week-preview .section-header {
+        background-color: #3498db;
+      }
+
+      .weekend-completion .section-header {
+        background-color: #27ae60;
+      }
+
+      .due-today .section-header {
+        background-color: #e74c3c;
+      }
+
+      .performance-context .section-header {
+        background-color: #9b59b6;
+      }
+
+      .group-performance .section-header {
+        background-color: #f39c12;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Activity lists */
+      .activity-list {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+      }
+
+      .activity {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        position: relative;
+      }
+
+      .activity:last-child {
+        border-bottom: none;
+      }
+
+      .activity-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 5px 0;
+        color: #2c3e50;
+      }
+
+      .activity-subject {
+        color: #4a6fa5;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+      }
+
+      .activity-teacher {
+        font-style: italic;
+        color: #666;
+        font-size: 14px;
+        margin: 0 0 10px 0;
+      }
+
+      .activity-description {
+        margin: 0 0 10px 0;
+        color: #555;
+      }
+
+      .activity-due {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      .activity-completed {
+        font-weight: bold;
+        color: #27ae60;
+      }
+
+      .activity-actions {
+        display: flex;
+        margin-top: 15px;
+      }
+
+      .activity-link {
+        display: inline-block;
+        padding: 8px 12px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .classity-link {
+        background-color: #4a6fa5;
+        color: white;
+      }
+
+      .classity-link:hover {
+        background-color: #3d5c8c;
+      }
+
+      .classroom-link {
+        background-color: #f8f9fa;
+        color: #666;
+        border: 1px solid #ddd;
+      }
+
+      .classroom-link:hover {
+        background-color: #e9ecef;
+      }
+
+      /* Week overview */
+      .week-overview {
+        margin-top: 20px;
+      }
+
+      .week-calendar {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      .week-calendar th {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .week-calendar td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        height: 80px;
+        vertical-align: top;
+      }
+
+      .cal-date {
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: right;
+        color: #666;
+      }
+
+      .cal-today {
+        background-color: #e8f4fd;
+      }
+
+      .cal-task {
+        font-size: 12px;
+        margin-bottom: 5px;
+        padding: 2px 5px;
+        border-radius: 3px;
+        display: block;
+      }
+
+      .cal-task-assignment {
+        background-color: #d4efdf;
+        border-left: 3px solid #27ae60;
+      }
+
+      .cal-task-test {
+        background-color: #fdebd0;
+        border-left: 3px solid #f39c12;
+      }
+
+      .cal-task-project {
+        background-color: #d6eaf8;
+        border-left: 3px solid #3498db;
+      }
+
+      /* Performance context */
+      .performance-chart {
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .distribution-chart {
+        height: 150px;
+        width: 100%;
+        position: relative;
+        margin: 20px 0;
+        border-bottom: 2px solid #ddd;
+      }
+
+      .distribution-bar {
+        position: absolute;
+        bottom: 0;
+        width: 8%;
+        background-color: #ddd;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .student-marker {
+        position: absolute;
+        bottom: -15px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 15px solid #e74c3c;
+        transform: rotate(180deg);
+      }
+
+      .score-indicator {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .score-segment {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+      }
+
+      .segment-filled {
+        background-color: #4a6fa5;
+      }
+
+      .segment-empty {
+        background-color: #ddd;
+      }
+
+      /* Group performance comparison */
+      .group-comparison {
+        margin: 20px 0;
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        background-color: #eee;
+        border-radius: 10px;
+        height: 15px;
+        overflow: hidden;
+        margin: 10px 0;
+      }
+
+      .progress-bar {
+        height: 100%;
+        border-radius: 10px;
+        background-color: #4a6fa5;
+      }
+
+      .highlighted-subjects {
+        margin-top: 15px;
+      }
+
+      .highlighted-subject {
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border-left: 4px solid #4a6fa5;
+      }
+
+      .subject-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .subject-name {
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .subject-grade {
+        font-weight: bold;
+      }
+
+      .subject-rank {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .personal-contribution {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #e8f6f0;
+        border-radius: 5px;
+        border-left: 4px solid #27ae60;
+      }
+
+      /* EPIC components */
+      .epic-components {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 15px;
+      }
+
+      .epic-component {
+        flex: 1 0 45%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+      }
+
+      .component-title {
+        font-weight: bold;
+        color: #4a6fa5;
+        margin: 0 0 5px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .component-value {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .positive {
+        color: #27ae60;
+      }
+
+      .warning {
+        color: #f39c12;
+      }
+
+      .danger {
+        color: #e74c3c;
+      }
+
+      .component-description {
+        font-size: 12px;
+        color: #666;
+        margin: 5px 0 0 0;
+      }
+
+      /* Action recommendation */
+      .action-recommendation {
+        background-color: #f1f9fe;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 20px;
+        border-left: 4px solid #3498db;
+      }
+
+      .action-recommendation h4 {
+        color: #3498db;
+        margin: 0 0 10px 0;
+      }
+
+      .action-list {
+        margin: 10px 0;
+        padding: 0 0 0 20px;
+      }
+
+      .action-list li {
+        margin-bottom: 8px;
+      }
+
+      /* View details button */
+      .view-in-classity {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .view-in-classity:hover {
+        background-color: #3d5c8c;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .summary-item {
+          flex: 1 0 100%;
+        }
+
+        .student-name {
+          font-size: 18px;
+        }
+
+        .section-header {
+          font-size: 16px;
+        }
+
+        .epic-component {
+          flex: 1 0 100%;
+        }
+
+        .activity-actions {
+          flex-direction: column;
+        }
+
+        .activity-link {
+          margin-bottom: 10px;
+          text-align: center;
+        }
+
+        .week-calendar th,
+        .week-calendar td {
+          padding: 5px;
+          font-size: 12px;
+        }
+
+        .cal-task {
+          font-size: 10px;
+          padding: 1px 3px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img src="cid:cedrosLogo" alt="Colegio Cedros" class="logo" />
+          <img src="cid:classityLogo" alt="Classity" class="classity-logo" />
+        </div>
+        <h1>Reporte Semanal: Lunes</h1>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- EPIC Score Summary -->
+      <div class="summary-container">
+        <h3 class="summary-title">Índice de Desempeño Educativo (EPIC): 83%</h3>
+
+        <div class="epic-components">
+          <div class="epic-component">
+            <div class="component-title">
+              <span>Rendimiento</span>
+              <span class="component-value positive">85%</span>
+            </div>
+            <p class="component-description">
+              Promedio académico basado en calificaciones obtenidas
+            </p>
+          </div>
+          <div class="epic-component">
+            <div class="component-title">
+              <span>Cumplimiento</span>
+              <span class="component-value positive">92%</span>
+            </div>
+            <p class="component-description">
+              Tasa de entrega oportuna de actividades asignadas
+            </p>
+          </div>
+          <div class="epic-component">
+            <div class="component-title">
+              <span>Consistencia</span>
+              <span class="component-value warning">75%</span>
+            </div>
+            <p class="component-description">
+              Patrón de trabajo constante durante la semana
+            </p>
+          </div>
+          <div class="epic-component">
+            <div class="component-title">
+              <span>Carga</span>
+              <span class="component-value positive">80%</span>
+            </div>
+            <p class="component-description">
+              Volumen de trabajo en comparación con el grupo
+            </p>
+          </div>
+        </div>
+
+        <!-- Weekly overview -->
+        <h3 class="summary-title">Resumen de la Semana</h3>
+        <div class="summary-data">
+          <div class="summary-item">
+            <div class="summary-label">Total de Actividades</div>
+            <div class="summary-value">12</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Para Hoy</div>
+            <div class="summary-value">3</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Proximos Días</div>
+            <div class="summary-value">9</div>
+          </div>
+        </div>
+
+        <!-- View in Classity Button -->
+        <a
+          href="https://app.classity.app/student/dashboard?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Panel Completo en Classity →</a
+        >
+      </div>
+
+      <!-- Weekend Completion Section -->
+      <div class="section weekend-completion">
+        <h3 class="section-header">
+          Actividades Completadas el Fin de Semana
+          <span class="badge">67% Completadas</span>
+        </h3>
+        <div class="activity-list">
+          <div class="activity">
+            <h4 class="activity-title">Ecuaciones Cuadráticas</h4>
+            <div class="activity-subject">Materia: 2. Matemáticas</div>
+            <div class="activity-teacher">Docente: Javier Hernández Torres</div>
+            <p class="activity-description">
+              10 ejercicios de práctica sobre ecuaciones cuadráticas. Se
+              incluyeron problemas de aplicación real.
+            </p>
+            <div class="activity-completed">
+              <strong>Entregado:</strong> Sábado 10/05/2025 14:23
+            </div>
+          </div>
+          <div class="activity">
+            <h4 class="activity-title">Análisis de Texto "El Aleph"</h4>
+            <div class="activity-subject">Materia: 2. Español</div>
+            <div class="activity-teacher">Docente: Mónica Sánchez Vargas</div>
+            <p class="activity-description">
+              Análisis de recursos literarios utilizados por Jorge Luis Borges
+              en su cuento "El Aleph".
+            </p>
+            <div class="activity-completed">
+              <strong>Entregado:</strong> Domingo 11/05/2025 18:45
+            </div>
+          </div>
+          <div class="activity">
+            <h4 class="activity-title">
+              Mapa Conceptual: Sistema Respiratorio
+            </h4>
+            <div class="activity-subject">Materia: 2. Biología</div>
+            <div class="activity-teacher">Docente: Laura González Méndez</div>
+            <p class="activity-description">
+              Elaboración de un mapa conceptual detallando la estructura y
+              función del sistema respiratorio humano.
+            </p>
+            <div class="activity-due">
+              <strong>No entregado, venció el:</strong> Viernes 09/05/2025 23:59
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activities Due Today -->
+      <div class="section due-today">
+        <h3 class="section-header">
+          Actividades para Hoy
+          <span class="badge">Prioridad Alta</span>
+        </h3>
+        <div class="activity-list">
+          <div class="activity">
+            <h4 class="activity-title">
+              Ensayo sobre la Revolución Industrial
+            </h4>
+            <div class="activity-subject">Materia: 2. Historia</div>
+            <div class="activity-teacher">Docente: Carlos Ramírez Fuentes</div>
+            <p class="activity-description">
+              Redactar un ensayo de 500 palabras sobre los efectos sociales de
+              la Revolución Industrial, enfatizando el impacto en la clase
+              trabajadora.
+            </p>
+            <div class="activity-due">
+              <strong>Fecha límite:</strong> Lunes 12/05/2025 23:59
+            </div>
+            <div class="activity-actions">
+              <a
+                href="https://app.classity.app/student/assignment/12347"
+                class="activity-link classity-link"
+                >Detalles en Classity</a
+              >
+              <a
+                href="https://classroom.google.com/c/MzQ2MjEyNDU3NjAx"
+                class="activity-link classroom-link"
+                >Ver en Classroom</a
+              >
+            </div>
+          </div>
+          <div class="activity">
+            <h4 class="activity-title">
+              Laboratorio Virtual: Reacciones Químicas
+            </h4>
+            <div class="activity-subject">Materia: 2. Química</div>
+            <div class="activity-teacher">Docente: Miguel Ángel Pérez Vega</div>
+            <p class="activity-description">
+              Completar la práctica virtual sobre tipos de reacciones químicas.
+              Documentar observaciones y responder las preguntas de análisis.
+            </p>
+            <div class="activity-due">
+              <strong>Fecha límite:</strong> Lunes 12/05/2025 15:00
+            </div>
+            <div class="activity-actions">
+              <a
+                href="https://app.classity.app/student/assignment/12348"
+                class="activity-link classity-link"
+                >Detalles en Classity</a
+              >
+              <a
+                href="https://classroom.google.com/c/NTYzMjEwNTQ3MDkz"
+                class="activity-link classroom-link"
+                >Ver en Classroom</a
+              >
+            </div>
+          </div>
+          <div class="activity">
+            <h4 class="activity-title">
+              Vocabulary Practice: Technology Terms
+            </h4>
+            <div class="activity-subject">Materia: 2. Inglés</div>
+            <div class="activity-teacher">Docente: Elizabeth Smith</div>
+            <p class="activity-description">
+              Complete the vocabulary exercises in the workbook pages 32-33
+              about technology and social media terms.
+            </p>
+            <div class="activity-due">
+              <strong>Fecha límite:</strong> Lunes 12/05/2025 18:30
+            </div>
+            <div class="activity-actions">
+              <a
+                href="https://app.classity.app/student/assignment/12349"
+                class="activity-link classity-link"
+                >Detalles en Classity</a
+              >
+              <a
+                href="https://classroom.google.com/c/MjE4NTYzOTEyMzQ1"
+                class="activity-link classroom-link"
+                >Ver en Classroom</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week Preview Section -->
+      <div class="section week-preview">
+        <h3 class="section-header">
+          Vista Previa de la Semana
+          <span class="badge">Plan Semanal</span>
+        </h3>
+        <div class="week-overview">
+          <p>Vista general de las actividades académicas para esta semana:</p>
+
+          <table class="week-calendar">
+            <tr>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+            </tr>
+            <tr>
+              <td class="cal-today">
+                <div class="cal-date">12/05</div>
+                <span class="cal-task cal-task-assignment"
+                  >Historia: Ensayo</span
+                >
+                <span class="cal-task cal-task-assignment"
+                  >Química: Laboratorio</span
+                >
+                <span class="cal-task cal-task-assignment"
+                  >Inglés: Vocabulary</span
+                >
+              </td>
+              <td>
+                <div class="cal-date">13/05</div>
+                <span class="cal-task cal-task-assignment"
+                  >Física: Problemas</span
+                >
+                <span class="cal-task cal-task-test">Español: Quiz</span>
+              </td>
+              <td>
+                <div class="cal-date">14/05</div>
+                <span class="cal-task cal-task-project"
+                  >Biología: Ecosistemas</span
+                >
+                <span class="cal-task cal-task-assignment"
+                  >Matemáticas: Ejercicios</span
+                >
+              </td>
+              <td>
+                <div class="cal-date">15/05</div>
+                <span class="cal-task cal-task-test">Matemáticas: Examen</span>
+                <span class="cal-task cal-task-assignment">Inglés: Dialog</span>
+              </td>
+              <td>
+                <div class="cal-date">16/05</div>
+                <span class="cal-task cal-task-project">Química: Informe</span>
+                <span class="cal-task cal-task-assignment"
+                  >Historia: Cuestionario</span
+                >
+              </td>
+            </tr>
+          </table>
+
+          <div
+            style="
+              background-color: #f1f9fe;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Carga Académica Semanal
+            </h4>
+            <p>
+              Esta semana presenta varias actividades importantes, con puntos de
+              alta intensidad el jueves (examen de Matemáticas) y el viernes
+              (entrega de proyectos).
+            </p>
+            <p style="margin-bottom: 0">
+              El análisis de datos muestra que distribuir el trabajo de manera
+              uniforme a lo largo de la semana puede contribuir a mejorar tu
+              componente de Consistencia EPIC, que actualmente es el área con
+              mayor oportunidad de mejora.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Context Section (New) -->
+      <div class="section performance-context">
+        <h3 class="section-header">
+          Desempeño en Contexto
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Tu calificación promedio (8.7) es superior al 75% de los estudiantes
+            de tu grupo.
+          </p>
+
+          <div class="performance-chart">
+            <div class="distribution-chart">
+              <!-- Distribution bars -->
+              <div class="distribution-bar" style="height: 30%; left: 5%"></div>
+              <div
+                class="distribution-bar"
+                style="height: 50%; left: 15%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 70%; left: 25%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 85%; left: 35%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 100%; left: 45%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 85%; left: 55%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 70%; left: 65%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 50%; left: 75%"
+              ></div>
+              <div
+                class="distribution-bar"
+                style="height: 30%; left: 85%"
+              ></div>
+
+              <!-- Student marker -->
+              <div class="student-marker" style="left: 72%"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px; color: #666">
+              <span style="margin-right: 15px">6.0</span>
+              <span style="margin-right: 15px">7.0</span>
+              <span style="margin-right: 15px">8.0</span>
+              <span style="margin-right: 15px">9.0</span>
+              <span>10.0</span>
+            </div>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              margin: 20px 0;
+              font-weight: bold;
+              color: #4a6fa5;
+            "
+          >
+            Tu calificación promedio te ubica en el segmento de rendimiento
+            <span style="color: #27ae60">ALTO</span> dentro de 2° grado.
+          </div>
+
+          <div class="score-indicator">
+            <span>Rendimiento:</span>
+            <div class="score-segment segment-filled">1</div>
+            <div class="score-segment segment-filled">2</div>
+            <div class="score-segment segment-filled">3</div>
+            <div class="score-segment segment-filled">4</div>
+            <div class="score-segment segment-empty">5</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group Performance Comparison Section (New) -->
+      <div class="section group-performance">
+        <h3 class="section-header">
+          Desempeño Grupal - 2°B
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <h4 style="margin-top: 0; color: #f39c12">
+            Rendimiento Promedio del Grupo: 8.2
+          </h4>
+
+          <div style="margin: 15px 0">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 5px;
+              "
+            >
+              <span>Posición de tu grupo:</span>
+              <span>2° posición de 4 grupos de 2° grado</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 80%"></div>
+            </div>
+          </div>
+
+          <h4 style="margin-top: 20px; color: #f39c12">
+            Materias Destacadas del Grupo:
+          </h4>
+
+          <div class="highlighted-subjects">
+            <div class="highlighted-subject">
+              <div class="subject-header">
+                <div class="subject-name">Matemáticas</div>
+                <div class="subject-grade">8.7</div>
+              </div>
+              <div class="subject-rank">1° lugar entre grupos de 2° grado</div>
+            </div>
+
+            <div class="highlighted-subject">
+              <div class="subject-header">
+                <div class="subject-name">Ciencias</div>
+                <div class="subject-grade">8.5</div>
+              </div>
+              <div class="subject-rank">2° lugar entre grupos de 2° grado</div>
+            </div>
+          </div>
+
+          <div class="personal-contribution">
+            <h4 style="margin-top: 0; color: #27ae60">
+              Contribución Personal:
+            </h4>
+            <p style="margin-bottom: 0">
+              Tu desempeño en Matemáticas (9.5) contribuye positivamente al
+              promedio grupal en esta materia, superando el promedio del grupo
+              por 0.8 puntos.
+            </p>
+          </div>
+
+          <div
+            style="
+              background-color: #f1f9fe;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Análisis de Rendimiento
+            </h4>
+            <p>
+              El análisis de datos muestra que tu rendimiento académico está
+              contribuyendo positivamente a la posición destacada de tu grupo en
+              Matemáticas. Tu grupo mantiene una posición sólida en el ranking
+              general, principalmente por el buen desempeño colectivo en
+              materias STEM.
+            </p>
+            <p style="margin-bottom: 0">
+              Al mejorar tu rendimiento en Historia, no solo beneficiarás tu
+              promedio individual, sino que también ayudarás a elevar el
+              promedio general del grupo en esta área, donde actualmente se
+              encuentran en 3° posición.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="generated-date">
+          Reporte generado por Classity el 12/05/2025 a las 06:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.app">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

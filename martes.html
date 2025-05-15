@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte de Enfoque por Materia: Martes - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      .summary-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4a6fa5;
+      }
+
+      .summary-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #4a6fa5;
+      }
+
+      .summary-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .summary-item {
+        flex: 1 0 30%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .summary-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .summary-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .subject-focus .section-header {
+        background-color: #27ae60;
+      }
+
+      .performance-map .section-header {
+        background-color: #3498db;
+      }
+
+      .distribution .section-header {
+        background-color: #9b59b6;
+      }
+
+      .assignment-tracking .section-header {
+        background-color: #e74c3c;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Teacher info box */
+      .teacher-info {
+        display: flex;
+        align-items: center;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      .teacher-initial {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #4a6fa5;
+        margin-right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .teacher-details {
+        flex-grow: 1;
+      }
+
+      .teacher-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0 0 5px 0;
+        color: #333;
+      }
+
+      .teacher-email {
+        font-size: 14px;
+        margin: 0;
+        color: #666;
+      }
+
+      /* Grade stats */
+      .grade-stats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .grade-stat {
+        flex: 1 0 45%;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .grade-value {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 10px 0;
+        color: #27ae60;
+      }
+
+      .grade-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Performance map */
+      .subject-performance-map {
+        margin: 15px 0;
+      }
+
+      .subject-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .subject-name {
+        width: 120px;
+        font-weight: bold;
+        padding-right: 10px;
+      }
+
+      .subject-grade {
+        width: 80px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .star-rating {
+        margin: 0 10px;
+        letter-spacing: 2px;
+      }
+
+      .percentile {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Distribution chart */
+      .distribution-container {
+        margin: 20px 0;
+      }
+
+      .distribution-chart {
+        height: 220px;
+        width: 100%;
+        position: relative;
+        margin: 30px 0;
+        border-bottom: 2px solid #ddd;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .chart-bar {
+        width: 8%;
+        background-color: #ddd;
+        border-radius: 3px 3px 0 0;
+        position: relative;
+      }
+
+      .chart-bar::after {
+        content: attr(data-value);
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: #666;
+      }
+
+      .chart-highlight {
+        background-color: #4a6fa5;
+        position: relative;
+      }
+
+      .chart-highlight::before {
+        content: "Tu posición";
+        position: absolute;
+        width: 80px;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: #4a6fa5;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .chart-highlight::after {
+        content: attr(data-value);
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      /* Progress bar */
+      .progress-container {
+        margin: 20px 0;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .progress-title {
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .progress-value {
+        font-weight: bold;
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        background-color: #eee;
+        border-radius: 6px;
+        height: 12px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        border-radius: 6px;
+        background-color: #27ae60;
+      }
+
+      /* Activity list */
+      .activity-list {
+        margin-top: 20px;
+      }
+
+      .activity-item {
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        position: relative;
+        border-left: 4px solid;
+      }
+
+      .completed {
+        border-color: #27ae60;
+      }
+
+      .pending {
+        border-color: #f39c12;
+      }
+
+      .upcoming {
+        border-color: #3498db;
+      }
+
+      .activity-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .activity-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 5px 0;
+        color: #2c3e50;
+      }
+
+      .activity-status {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .status-completed {
+        background-color: #d4efdf;
+        color: #27ae60;
+      }
+
+      .status-pending {
+        background-color: #fdebd0;
+        color: #f39c12;
+      }
+
+      .status-upcoming {
+        background-color: #d6eaf8;
+        color: #3498db;
+      }
+
+      .activity-date {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .activity-grade {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .grade-excellent {
+        color: #27ae60;
+      }
+
+      .grade-good {
+        color: #3498db;
+      }
+
+      .grade-average {
+        color: #f39c12;
+      }
+
+      .grade-poor {
+        color: #e74c3c;
+      }
+
+      /* Subject analysis */
+      .analysis-box {
+        background-color: #e8f6f0;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 20px;
+        border-left: 4px solid #27ae60;
+      }
+
+      .analysis-title {
+        color: #27ae60;
+        margin: 0 0 10px 0;
+        font-weight: bold;
+      }
+
+      .strength-item,
+      .improvement-item {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .strength-item:before,
+      .improvement-item:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .strength-item:before {
+        background-color: #27ae60;
+      }
+
+      .improvement-item:before {
+        background-color: #e74c3c;
+      }
+
+      /* Assignment tracking */
+      .upcoming-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      .upcoming-table th {
+        text-align: left;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #ddd;
+        color: #4a6fa5;
+        font-weight: bold;
+      }
+
+      .upcoming-table td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .subject-highlight {
+        font-weight: bold;
+      }
+
+      .math-highlight {
+        color: #27ae60;
+      }
+
+      .history-highlight {
+        color: #e74c3c;
+      }
+
+      .biology-highlight {
+        color: #9b59b6;
+      }
+
+      .english-highlight {
+        color: #3498db;
+      }
+
+      .physics-highlight {
+        color: #f39c12;
+      }
+
+      /* View details button */
+      .view-in-classity {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .view-in-classity:hover {
+        background-color: #3d5c8c;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .summary-item {
+          flex: 1 0 100%;
+        }
+
+        .student-name {
+          font-size: 18px;
+        }
+
+        .section-header {
+          font-size: 16px;
+        }
+
+        .grade-stat {
+          flex: 1 0 100%;
+        }
+
+        .activity-grade {
+          position: static;
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        .subject-row {
+          flex-wrap: wrap;
+        }
+
+        .subject-name {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+
+        .chart-bar::after {
+          font-size: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img src="cid:cedrosLogo" alt="Colegio Cedros" class="logo" />
+          <img src="cid:classityLogo" alt="Classity" class="classity-logo" />
+        </div>
+        <h1>Reporte de Enfoque por Materia: Martes</h1>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- Subject Overview -->
+      <div class="summary-container">
+        <h3 class="summary-title">Enfoque de Materia: Matemáticas</h3>
+        <div class="summary-data">
+          <div class="summary-item">
+            <div class="summary-label">Promedio Actual</div>
+            <div class="summary-value">9.5</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Actividades Completadas</div>
+            <div class="summary-value">12</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Pendientes</div>
+            <div class="summary-value">2</div>
+          </div>
+        </div>
+
+        <!-- View in Classity Button -->
+        <a
+          href="https://app.classity.app/student/subject/math?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Análisis Completo →</a
+        >
+      </div>
+
+      <!-- Subject Focus Section -->
+      <div class="section subject-focus">
+        <h3 class="section-header">
+          Análisis Detallado: Matemáticas
+          <span class="badge">2° Secundaria</span>
+        </h3>
+        <div class="section-content">
+          <!-- Teacher Info -->
+          <div class="teacher-info">
+            <div class="teacher-initial">JH</div>
+            <div class="teacher-details">
+              <h4 class="teacher-name">Javier Hernández Torres</h4>
+              <p class="teacher-email">javier.hernandez@colegiocedros.com</p>
+            </div>
+          </div>
+
+          <!-- Grade Stats -->
+          <div class="grade-stats">
+            <div class="grade-stat">
+              <div class="grade-label">Promedio Actual</div>
+              <div class="grade-value">9.5</div>
+            </div>
+            <div class="grade-stat">
+              <div class="grade-label">Mejor Calificación</div>
+              <div class="grade-value">9.8</div>
+            </div>
+            <div class="grade-stat">
+              <div class="grade-label">Puntualidad</div>
+              <div class="grade-value">92%</div>
+            </div>
+            <div class="grade-stat">
+              <div class="grade-label">Participación</div>
+              <div class="grade-value">85%</div>
+            </div>
+          </div>
+
+          <!-- Progress Towards Term Grade -->
+          <div class="progress-container">
+            <div class="progress-header">
+              <span class="progress-title">Progreso del Trimestre</span>
+              <span class="progress-value">64% Completado</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 64%"></div>
+            </div>
+          </div>
+
+          <!-- Recent Activities -->
+          <h4 class="summary-title">Actividades Recientes</h4>
+          <div class="activity-list">
+            <div class="activity-item completed">
+              <div class="activity-header">
+                <h5 class="activity-title">
+                  Ecuaciones Cuadráticas: Ejercicios Avanzados
+                </h5>
+                <span class="activity-grade grade-excellent">9.5</span>
+              </div>
+              <span class="activity-status status-completed">Completada</span>
+              <p>
+                Resolución de problemas complejos utilizando la fórmula
+                cuadrática y completando el cuadrado perfecto.
+              </p>
+              <div class="activity-date">Entregada: 11/05/2025</div>
+            </div>
+
+            <div class="activity-item completed">
+              <div class="activity-header">
+                <h5 class="activity-title">Examen Parcial: Álgebra</h5>
+                <span class="activity-grade grade-good">8.7</span>
+              </div>
+              <span class="activity-status status-completed">Completada</span>
+              <p>
+                Evaluación sobre factorización, ecuaciones cuadráticas y
+                aplicaciones a problemas reales.
+              </p>
+              <div class="activity-date">Realizado: 06/05/2025</div>
+            </div>
+
+            <div class="activity-item pending">
+              <div class="activity-header">
+                <h5 class="activity-title">Proyecto: Modelado de Funciones</h5>
+              </div>
+              <span class="activity-status status-pending">Pendiente</span>
+              <p>
+                Creación de modelos matemáticos para representar situaciones
+                cotidianas utilizando funciones lineales y cuadráticas.
+              </p>
+              <div class="activity-date">Fecha límite: 17/05/2025</div>
+            </div>
+
+            <div class="activity-item completed">
+              <div class="activity-header">
+                <h5 class="activity-title">
+                  Ejercicios: Sistemas de Ecuaciones
+                </h5>
+                <span class="activity-grade grade-average">7.8</span>
+              </div>
+              <span class="activity-status status-completed">Completada</span>
+              <p>
+                Resolución de sistemas de ecuaciones utilizando métodos de
+                sustitución, igualación y reducción.
+              </p>
+              <div class="activity-date">Entregada: 28/04/2025</div>
+            </div>
+          </div>
+
+          <!-- Basic Summary based on historical grades only -->
+          <div class="analysis-box">
+            <h4 class="analysis-title">Resumen de Rendimiento</h4>
+
+            <p>
+              Basado en tus calificaciones históricas en esta materia, se
+              observa un desempeño destacado en las actividades relacionadas con
+              ecuaciones cuadráticas y operaciones algebraicas.
+            </p>
+
+            <p>
+              Tu promedio actual de 9.5 refleja un dominio consistente de los
+              conceptos matemáticos cubiertos hasta el momento.
+            </p>
+
+            <p>
+              Mantén este nivel de dedicación para las próximas evaluaciones,
+              especialmente para el examen programado para el jueves.
+            </p>
+          </div>
+
+          <!-- Upcoming Activities -->
+          <h4 class="summary-title" style="margin-top: 20px">
+            Próximas Actividades
+          </h4>
+
+          <div class="activity-list">
+            <div class="activity-item upcoming">
+              <div class="activity-header">
+                <h5 class="activity-title">Ejercicios: Funciones y Gráficas</h5>
+              </div>
+              <span class="activity-status status-upcoming"
+                >Programado: Mañana</span
+              >
+              <p>
+                Serie de ejercicios sobre interpretación de gráficas de
+                funciones y determinación de dominio y rango.
+              </p>
+              <div class="activity-date">Fecha de asignación: 14/05/2025</div>
+            </div>
+
+            <div class="activity-item upcoming">
+              <div class="activity-header">
+                <h5 class="activity-title">Examen: Funciones y Ecuaciones</h5>
+              </div>
+              <span class="activity-status status-upcoming"
+                >Programado: Jueves</span
+              >
+              <p>
+                Evaluación sobre funciones lineales, cuadráticas, sus gráficas,
+                y ecuaciones relacionadas.
+              </p>
+              <div class="activity-date">Fecha: 15/05/2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Map Section (New) -->
+      <div class="section performance-map">
+        <h3 class="section-header">
+          Mapa de Desempeño por Materias
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Este análisis muestra tu posición relativa en comparación con otros
+            estudiantes de 2° grado en cada materia:
+          </p>
+
+          <div class="subject-performance-map">
+            <div class="subject-row">
+              <div class="subject-name">MATEMÁTICAS</div>
+              <div class="subject-grade">9.5</div>
+              <div class="star-rating">★★★★★</div>
+              <div class="percentile">Superior al 95% del grado</div>
+            </div>
+
+            <div class="subject-row">
+              <div class="subject-name">ESPAÑOL</div>
+              <div class="subject-grade">8.8</div>
+              <div class="star-rating">★★★★☆</div>
+              <div class="percentile">Superior al 85% del grado</div>
+            </div>
+
+            <div class="subject-row">
+              <div class="subject-name">INGLÉS</div>
+              <div class="subject-grade">8.5</div>
+              <div class="star-rating">★★★★☆</div>
+              <div class="percentile">Superior al 80% del grado</div>
+            </div>
+
+            <div class="subject-row">
+              <div class="subject-name">BIOLOGÍA</div>
+              <div class="subject-grade">7.8</div>
+              <div class="star-rating">★★★☆☆</div>
+              <div class="percentile">Superior al 65% del grado</div>
+            </div>
+
+            <div class="subject-row">
+              <div class="subject-name">HISTORIA</div>
+              <div class="subject-grade">7.2</div>
+              <div class="star-rating">★★☆☆☆</div>
+              <div class="percentile">Superior al 45% del grado</div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background-color: #e8f6f0;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #27ae60;
+            "
+          >
+            <h4 style="color: #27ae60; margin-top: 0">DESTACADO</h4>
+            <p>
+              Tu rendimiento en Matemáticas te coloca entre los estudiantes más
+              sobresalientes de 2° grado, superando al 95% de tus compañeros.
+            </p>
+          </div>
+
+          <div
+            style="
+              background-color: #fef5e7;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 15px;
+              border-left: 4px solid #e74c3c;
+            "
+          >
+            <h4 style="color: #e74c3c; margin-top: 0">OPORTUNIDAD</h4>
+            <p>
+              Mejorar en Historia te permitiría elevar significativamente tu
+              promedio general. Actualmente, esta es la materia con mayor
+              oportunidad de crecimiento.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Distribution of Grades Section (New) -->
+      <div class="section distribution">
+        <h3 class="section-header">
+          Distribución de Calificaciones: Matemáticas
+          <span class="badge">Posición Relativa</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Este gráfico muestra la distribución de calificaciones en
+            Matemáticas para estudiantes de 2° grado:
+          </p>
+
+          <div class="distribution-container">
+            <div class="distribution-chart">
+              <div class="chart-bar" style="height: 20%" data-value="6.0"></div>
+              <div class="chart-bar" style="height: 30%" data-value="7.0"></div>
+              <div class="chart-bar" style="height: 50%" data-value="8.0"></div>
+              <div class="chart-bar" style="height: 40%" data-value="8.5"></div>
+              <div class="chart-bar" style="height: 30%" data-value="9.0"></div>
+              <div
+                class="chart-bar chart-highlight"
+                style="height: 20%"
+                data-value="9.5"
+              ></div>
+              <div
+                class="chart-bar"
+                style="height: 10%"
+                data-value="10.0"
+              ></div>
+            </div>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              margin: 30px 0 20px;
+              color: #4a6fa5;
+              font-weight: bold;
+            "
+          >
+            Tu calificación (9.5) se encuentra en el rango superior, superando
+            al 95% de los estudiantes en esta materia.
+          </div>
+
+          <div
+            style="
+              background-color: #f1f9fe;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 10px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <p style="margin-top: 0; font-style: italic">
+              La distribución muestra que te encuentras entre el grupo selecto
+              de estudiantes con desempeño sobresaliente en Matemáticas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assignment Tracking Section -->
+      <div class="section assignment-tracking">
+        <h3 class="section-header">
+          Seguimiento de Asignaciones
+          <span class="badge">Global</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Además del enfoque en Matemáticas, es importante mantener
+            seguimiento de todas las asignaciones pendientes para esta semana:
+          </p>
+
+          <table class="upcoming-table">
+            <tr>
+              <th>Materia</th>
+              <th>Actividad</th>
+              <th>Fecha Límite</th>
+            </tr>
+            <tr>
+              <td class="subject-highlight math-highlight">Matemáticas</td>
+              <td>Ejercicios: Funciones y Gráficas</td>
+              <td>14/05/2025</td>
+            </tr>
+            <tr>
+              <td class="subject-highlight math-highlight">Matemáticas</td>
+              <td>Examen: Funciones y Ecuaciones</td>
+              <td>15/05/2025</td>
+            </tr>
+            <tr>
+              <td class="subject-highlight biology-highlight">Biología</td>
+              <td>Investigación: Ecosistemas Acuáticos</td>
+              <td>14/05/2025</td>
+            </tr>
+            <tr>
+              <td class="subject-highlight english-highlight">Inglés</td>
+              <td>Present Perfect: Dialog</td>
+              <td>15/05/2025</td>
+            </tr>
+            <tr>
+              <td class="subject-highlight history-highlight">Historia</td>
+              <td>Cuestionario: La Revolución Industrial</td>
+              <td>16/05/2025</td>
+            </tr>
+            <tr>
+              <td class="subject-highlight math-highlight">Matemáticas</td>
+              <td>Proyecto: Modelado de Funciones</td>
+              <td>17/05/2025</td>
+            </tr>
+          </table>
+
+          <!-- Simple factual information instead of personalized recommendations -->
+          <div
+            style="
+              background-color: #e8f4fd;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">
+              Calendario de Actividades
+            </h4>
+            <p>
+              Esta semana incluye múltiples entregas relacionadas con
+              Matemáticas:
+            </p>
+            <ul style="margin-bottom: 0">
+              <li>Miércoles: Ejercicios sobre Funciones y Gráficas</li>
+              <li>Jueves: Examen de Funciones y Ecuaciones</li>
+              <li>Fin de semana: Proyecto de Modelado de Funciones</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="generated-date">
+          Reporte generado por Classity el 14/05/2025 a las 06:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.app">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
