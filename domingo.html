@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Fin de Semana: Domingo - Classity</title>
+    <style>
+        /* Base styles with mobile-first approach */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid #4a6fa5;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin-right: 10px;
+        }
+        
+        .classity-logo {
+            max-width: 120px;
+            height: auto;
+        }
+        
+        .powered-by {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            text-align: center;
+        }
+        
+        .student-info {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .student-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .student-email {
+            font-size: 14px;
+            margin: 5px 0 0 0;
+        }
+        
+        .summary-container {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #4a6fa5;
+        }
+        
+        .summary-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: #4a6fa5;
+        }
+        
+        .summary-data {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .summary-item {
+            flex: 1 0 30%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .summary-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .summary-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        /* Section styling */
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            padding: 12px 15px;
+            border-radius: 5px 5px 0 0;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .badge {
+            background-color: white;
+            color: #333;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        
+        .weekend-activity .section-header {
+            background-color: #27ae60;
+        }
+        
+        .monday-preparation .section-header {
+            background-color: #e74c3c;
+        }
+        
+        .week-ahead .section-header {
+            background-color: #3498db;
+        }
+        
+        .grade-analysis .section-header {
+            background-color: #9b59b6;
+        }
+        
+        .submission-patterns .section-header {
+            background-color: #f39c12;
+        }
+        
+        .section-content {
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            padding: 15px;
+            background-color: #fff;
+        }
+        
+        /* Activity cards */
+        .activity-list {
+            margin-top: 20px;
+        }
+        
+        .activity-item {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            border-left: 4px solid;
+        }
+        
+        .completed {
+            border-color: #27ae60;
+        }
+        
+        .in-progress {
+            border-color: #f39c12;
+        }
+        
+        .not-started {
+            border-color: #e74c3c;
+        }
+        
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .activity-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+        }
+        
+        .activity-subject {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .activity-metadata {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 8px;
+        }
+        
+        .activity-status {
+            font-weight: bold;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .status-completed {
+            background-color: #d4efdf;
+            color: #27ae60;
+        }
+        
+        .status-progress {
+            background-color: #fdebd0;
+            color: #f39c12;
+        }
+        
+        .status-pending {
+            background-color: #f5b7b1;
+            color: #e74c3c;
+        }
+        
+        /* Week ahead calendar */
+        .week-calendar {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .week-calendar th {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 4px;
+            text-align: center;
+            color: #4a6fa5;
+            font-weight: bold;
+        }
+        
+        .week-calendar td {
+            border: 1px solid #ddd;
+            padding: 8px 4px;
+            vertical-align: top;
+            height: 80px;
+        }
+        
+        .calendar-date {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        
+        .calendar-event {
+            background-color: #e8f4fd;
+            font-size: 11px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            margin-bottom: 3px;
+            border-left: 2px solid #3498db;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .calendar-assignment {
+            background-color: #fadbd8;
+            border-left-color: #e74c3c;
+        }
+        
+        .calendar-exam {
+            background-color: #fcf3cf;
+            border-left-color: #f39c12;
+        }
+        
+        .calendar-project {
+            background-color: #d4efdf;
+            border-left-color: #27ae60;
+        }
+        
+        .monday-highlight {
+            background-color: #fef9e7;
+        }
+        
+        /* Monday preparation list */
+        .preparation-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+        
+        .preparation-item {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .preparation-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0 0 5px 0;
+        }
+        
+        .preparation-details {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin: 0;
+        }
+        
+        /* EPIC components */
+        .epic-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .epic-score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #4a6fa5;
+            margin: 10px 0;
+        }
+        
+        .epic-components {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .epic-component {
+            flex: 1 0 45%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        
+        .component-title {
+            font-weight: bold;
+            color: #4a6fa5;
+            margin: 0 0 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .component-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .positive {
+            color: #27ae60;
+        }
+        
+        .warning {
+            color: #f39c12;
+        }
+        
+        .negative {
+            color: #e74c3c;
+        }
+        
+        .component-description {
+            font-size: 12px;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+        
+        /* Grade distribution */
+        .grade-distribution {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .grade-card {
+            flex: 1 0 45%;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 4px solid;
+        }
+        
+        .grade-card.high {
+            border-color: #27ae60;
+        }
+        
+        .grade-card.medium {
+            border-color: #f39c12;
+        }
+        
+        .grade-card.low {
+            border-color: #e74c3c;
+        }
+        
+        .grade-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .grade-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0;
+        }
+        
+        .grade-value {
+            font-weight: bold;
+        }
+        
+        .grade-value.high {
+            color: #27ae60;
+        }
+        
+        .grade-value.medium {
+            color: #f39c12;
+        }
+        
+        .grade-value.low {
+            color: #e74c3c;
+        }
+        
+        .grade-details {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        /* Submission patterns */
+        .pattern-chart {
+            margin: 20px 0;
+        }
+        
+        .pattern-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .pattern-label {
+            width: 120px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .pattern-bar-container {
+            flex-grow: 1;
+            height: 15px;
+            background-color: #eee;
+            border-radius: 7.5px;
+            overflow: hidden;
+        }
+        
+        .pattern-bar {
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 7.5px;
+        }
+        
+        .pattern-value {
+            width: 50px;
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        /* Info box */
+        .info-box {
+            background-color: #f1f9fe;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .info-title {
+            color: #3498db;
+            margin: 0 0 10px 0;
+            font-weight: bold;
+        }
+        
+        /* View details button */
+        .view-in-classity {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 12px 20px;
+            background-color: #4a6fa5;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .view-in-classity:hover {
+            background-color: #3d5c8c;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .generated-date {
+            margin: 0 0 10px 0;
+        }
+        
+        /* Responsive adjustments */
+        @media only screen and (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .summary-item {
+                flex: 1 0 100%;
+            }
+            
+            .student-name {
+                font-size: 18px;
+            }
+            
+            .section-header {
+                font-size: 16px;
+            }
+            
+            .epic-component {
+                flex: 1 0 100%;
+            }
+            
+            .grade-card {
+                flex: 1 0 100%;
+            }
+            
+            .week-calendar th,
+            .week-calendar td {
+                padding: 5px 2px;
+                font-size: 11px;
+            }
+            
+            .calendar-event {
+                font-size: 9px;
+                padding: 1px 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="/api/placeholder/180/80" alt="Colegio Cedros" class="logo">
+                <img src="/api/placeholder/120/60" alt="Classity" class="classity-logo">
+            </div>
+            <h1>Resumen de Fin de Semana: Domingo</h1>
+            <p class="powered-by">Impulsado por Classity - Insights avanzados para el éxito académico</p>
+        </div>
+        
+        <!-- Student Information -->
+        <div class="student-info">
+            <h2 class="student-name">Diego Martínez Rodríguez</h2>
+            <p class="student-email">diego.martinez@colegiocedros.com</p>
+        </div>
+        
+        <!-- EPIC Score Summary -->
+        <div class="summary-container">
+            <h3 class="summary-title">Índice EPIC</h3>
+            <div class="epic-score">83%</div>
+            
+            <div class="epic-components">
+                <div class="epic-component">
+                    <div class="component-title">
+                        <span>Rendimiento</span>
+                        <span class="component-value positive">85%</span>
+                    </div>
+                    <p class="component-description">Calificaciones y evaluaciones</p>
+                </div>
+                <div class="epic-component">
+                    <div class="component-title">
+                        <span>Cumplimiento</span>
+                        <span class="component-value positive">92%</span>
+                    </div>
+                    <p class="component-description">Entregas a tiempo</p>
+                </div>
+                <div class="epic-component">
+                    <div class="component-title">
+                        <span>Consistencia</span>
+                        <span class="component-value warning">76%</span>
+                    </div>
+                    <p class="component-description">Actividad académica regular</p>
+                </div>
+                <div class="epic-component">
+                    <div class="component-title">
+                        <span>Carga</span>
+                        <span class="component-value warning">80%</span>
+                    </div>
+                    <p class="component-description">Volumen de trabajo académico</p>
+                </div>
+            </div>
+            
+            <!-- View in Classity Button -->
+            <a href="https://app.classity.com/student/dashboard?id=diego.martinez" class="view-in-classity">Ver Panel Completo en Classity →</a>
+        </div>
+        
+        <!-- Weekend Activity Section -->
+        <div class="section weekend-activity">
+            <h3 class="section-header">
+                Actividades del Fin de Semana
+                <span class="badge">Estado Actual</span>
+            </h3>
+            <div class="section-content">
+                <p>A continuación se muestra el estado de las actividades visibles en el sistema:</p>
+                
+                <div class="summary-data">
+                    <div class="summary-item">
+                        <div class="summary-label">Completadas</div>
+                        <div class="summary-value">4</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Entregadas a Tiempo</div>
+                        <div class="summary-value">4</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Entregadas Tarde</div>
+                        <div class="summary-value">0</div>
+                    </div>
+                </div>
+                
+                <div class="activity-list">
+                    <div class="activity-item completed">
+                        <div class="activity-header">
+                            <h4 class="activity-title">Investigación: Ecosistemas Terrestres</h4>
+                            <div class="activity-subject">2. Biología</div>
+                        </div>
+                        <span class="activity-status status-completed">Completada</span>
+                        <p>Investigación sobre biodiversidad en ecosistemas terrestres. Incluye comparativa con ecosistemas acuáticos.</p>
+                        <div class="activity-metadata">
+                            <span>Fecha Límite: 18/05/2025</span>
+                            <span>Fecha Entrega: 18/05/2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item completed">
+                        <div class="activity-header">
+                            <h4 class="activity-title">Proyecto: Modelado de Funciones</h4>
+                            <div class="activity-subject">2. Matemáticas</div>
+                        </div>
+                        <span class="activity-status status-completed">Completada</span>
+                        <p>Creación de modelos matemáticos para situaciones cotidianas utilizando funciones lineales y cuadráticas.</p>
+                        <div class="activity-metadata">
+                            <span>Fecha Límite: 17/05/2025</span>
+                            <span>Fecha Entrega: 17/05/2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item completed">
+                        <div class="activity-header">
+                            <h4 class="activity-title">Informe de Laboratorio: Reacciones Químicas</h4>
+                            <div class="activity-subject">2. Química</div>
+                        </div>
+                        <span class="activity-status status-completed">Completada</span>
+                        <p>Redacción del informe final sobre la práctica virtual de tipos de reacciones químicas.</p>
+                        <div class="activity-metadata">
+                            <span>Fecha Límite: 18/05/2025</span>
+                            <span>Fecha Entrega: 18/05/2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item completed">
+                        <div class="activity-header">
+                            <h4 class="activity-title">Lectura: Cien Años de Soledad (Primeros Capítulos)</h4>
+                            <div class="activity-subject">2. Español</div>
+                        </div>
+                        <span class="activity-status status-completed">Completada</span>
+                        <p>Lectura de los primeros capítulos del libro para la nueva unidad de Literatura Contemporánea.</p>
+                        <div class="activity-metadata">
+                            <span>Fecha Límite: 20/05/2025</span>
+                            <span>Fecha Entrega: 17/05/2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h4 class="info-title">Datos del Sistema</h4>
+                    <p>El sistema registra 4 actividades completadas y entregadas durante el fin de semana. El componente de Consistencia EPIC muestra un valor actual de 76%, que representa un incremento con respecto a mediciones anteriores.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Monday Preparation Section -->
+        <div class="section monday-preparation">
+            <h3 class="section-header">
+                Actividades para Mañana
+                <span class="badge">Lunes 20/05</span>
+            </h3>
+            <div class="section-content">
+                <p>Según los datos registrados en el sistema, estas son las actividades programadas para mañana:</p>
+                
+                <ul class="preparation-list">
+                    <li class="preparation-item">
+                        <h4 class="preparation-title">Reunión: Equipo Proyecto Inglés</h4>
+                        <p class="preparation-details">Reunión de coordinación para el proyecto de presentación cultural.</p>
+                        <div class="activity-metadata">
+                            <span>Hora: 10:30</span>
+                            <span>Clase: 2. Inglés</span>
+                        </div>
+                    </li>
+                    
+                    <li class="preparation-item">
+                        <h4 class="preparation-title">Entregar: Lectura - Cien Años de Soledad</h4>
+                        <p class="preparation-details">Fecha límite para entregar las conclusiones sobre la lectura inicial.</p>
+                        <div class="activity-metadata">
+                            <span>Límite: 20/05/2025</span>
+                            <span>Estado: Completada (Anticipada)</span>
+                        </div>
+                    </li>
+                    
+                    <li class="preparation-item">
+                        <h4 class="preparation-title">Inicio: Unidad de Literatura Contemporánea</h4>
+                        <p class="preparation-details">Comienzo de la nueva unidad didáctica en la clase de Español.</p>
+                        <div class="activity-metadata">
+                            <span>Hora: 12:45</span>
+                            <span>Clase: 2. Español</span>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="info-box">
+                    <h4 class="info-title">Nota sobre Actividades</h4>
+                    <p>El sistema muestra que la actividad de lectura ya ha sido completada de manera anticipada. Las otras actividades son eventos programados sin entregables registrados.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Week Ahead Preview Section -->
+        <div class="section week-ahead">
+            <h3 class="section-header">
+                Vista Previa de la Semana
+                <span class="badge">20-24 Mayo</span>
+            </h3>
+            <div class="section-content">
+                <p>El sistema muestra las siguientes actividades registradas para la próxima semana:</p>
+                
+                <!-- Calendar View -->
+                <table class="week-calendar">
+                    <tr>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                    </tr>
+                    <tr>
+                        <td class="monday-highlight">
+                            <div class="calendar-date">20/05</div>
+                            <div class="calendar-event">Reunión: Equipo Inglés</div>
+                            <div class="calendar-event">Inicio: Literatura</div>
+                        </td>
+                        <td>
+                            <div class="calendar-date">21/05</div>
+                            <div class="calendar-event calendar-assignment">Discusión: Literatura</div>
+                        </td>
+                        <td>
+                            <div class="calendar-date">22/05</div>
+                            <div class="calendar-event calendar-exam">Examen: Biología</div>
+                            <div class="calendar-event">Laboratorio: Física</div>
+                        </td>
+                        <td>
+                            <div class="calendar-date">23/05</div>
+                            <div class="calendar-event calendar-project">Taller: Física</div>
+                            <div class="calendar-event">Ensayo: Presentación</div>
+                        </td>
+                        <td>
+                            <div class="calendar-date">24/05</div>
+                            <div class="calendar-event calendar-project">Presentación: Inglés</div>
+                            <div class="calendar-event calendar-assignment">Entrega: Matemáticas</div>
+                        </td>
+                    </tr>
+                </table>
+                
+                <div class="info-box">
+                    <h4 class="info-title">Actividades Destacadas</h4>
+                    <p>Los registros muestran dos actividades con mayor peso académico esta semana:</p>
+                    <ul style="margin-bottom: 0; padding-left: 20px;">
+                        <li><strong>Miércoles 22/05:</strong> Examen parcial de Biología</li>
+                        <li><strong>Viernes 24/05:</strong> Presentación del proyecto de Inglés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grade Analysis Section -->
+        <div class="section grade-analysis">
+            <h3 class="section-header">
+                Análisis de Calificaciones
+                <span class="badge">Datos Actuales</span>
+            </h3>
+            <div class="section-content">
+                <p>Basado en las calificaciones registradas en el sistema, se presenta el siguiente análisis:</p>
+                
+                <div class="grade-distribution">
+                    <div class="grade-card high">
+                        <div class="grade-header">
+                            <h4 class="grade-title">Matemáticas</h4>
+                            <span class="grade-value high">9.2</span>
+                        </div>
+                        <p class="grade-details">Basado en 8 actividades calificadas. Representa un promedio superior a la media del grupo.</p>
+                    </div>
+                    
+                    <div class="grade-card high">
+                        <div class="grade-header">
+                            <h4 class="grade-title">Español</h4>
+                            <span class="grade-value high">8.8</span>
+                        </div>
+                        <p class="grade-details">Basado en 7 actividades calificadas. Mantiene un nivel constante en las últimas evaluaciones.</p>
+                    </div>
+                    
+                    <div class="grade-card medium">
+                        <div class="grade-header">
+                            <h4 class="grade-title">Biología</h4>
+                            <span class="grade-value medium">7.8</span>
+                        </div>
+                        <p class="grade-details">Basado en 6 actividades calificadas. Muestra variación entre diferentes tipos de actividades.</p>
+                    </div>
+                    
+                    <div class="grade-card low">
+                        <div class="grade-header">
+                            <h4 class="grade-title">Historia</h4>
+                            <span class="grade-value low">7.2</span>
+                        </div>
+                        <p class="grade-details">Basado en 5 actividades calificadas. Presenta la mayor diferencia con respecto al promedio grupal.</p>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h4 class="info-title">Análisis de Datos</h4>
+                    <p>El análisis de calificaciones registradas en el sistema muestra un promedio general de 8.5. Las materias con mejor desempeño son Matemáticas (9.2) y Español (8.8), mientras que Historia (7.2) presenta el mayor margen de mejora.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Submission Patterns Section -->
+        <div class="section submission-patterns">
+            <h3 class="section-header">
+                Patrones de Entrega
+                <span class="badge">Análisis de Datos</span>
+            </h3>
+            <div class="section-content">
+                <p>El análisis de los datos de entrega de actividades muestra los siguientes patrones:</p>
+                
+                <div class="pattern-chart">
+                    <div class="pattern-row">
+                        <div class="pattern-label">Mismo día</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 68%"></div>
+                        </div>
+                        <div class="pattern-value">68%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">1-2 días antes</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 20%"></div>
+                        </div>
+                        <div class="pattern-value">20%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">3+ días antes</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 12%"></div>
+                        </div>
+                        <div class="pattern-value">12%</div>
+                    </div>
+                </div>
+                
+                <div class="pattern-chart">
+                    <h4 style="margin-top: 30px; margin-bottom: 15px; color: #4a6fa5;">Distribución por Día de la Semana</h4>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Lunes</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 15%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">15%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Martes</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 12%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">12%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Miércoles</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 18%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">18%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Jueves</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 10%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">10%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Viernes</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 15%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">15%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Sábado</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 10%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">10%</div>
+                    </div>
+                    
+                    <div class="pattern-row">
+                        <div class="pattern-label">Domingo</div>
+                        <div class="pattern-bar-container">
+                            <div class="pattern-bar" style="width: 20%; background-color: #3498db;"></div>
+                        </div>
+                        <div class="pattern-value">20%</div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h4 class="info-title">Análisis de Patrones de Entrega</h4>
+                    <p>El análisis de los datos históricos de entrega muestra que la mayoría de las actividades (68%) son completadas el mismo día de la fecha límite. Los días con mayor actividad de entregas son miércoles (18%) y domingo (20%).</p>
+                    <p>Los datos muestran una correlación entre las entregas anticipadas y calificaciones más altas, especialmente en Matemáticas y Español.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EPIC Analysis Section -->
+        <div class="section">
+            <h3 class="section-header" style="background-color: #8e44ad;">
+                Análisis EPIC Comparativo
+                <span class="badge">Datos Semanales</span>
+            </h3>
+            <div class="section-content">
+                <p>El análisis de los componentes EPIC muestra la siguiente evolución semanal:</p>
+                
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: bold; color: #8e44ad;">Índice EPIC Total</span>
+                        <span style="font-weight: bold; color: #27ae60;">+3% esta semana</span>
+                    </div>
+                    <div style="width: 100%; background-color: #eee; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <div style="width: 83%; background-color: #8e44ad; height: 100%; border-radius: 5px;"></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: bold; color: #9b59b6;">Rendimiento</span>
+                        <span style="font-weight: bold; color: #27ae60;">+2% esta semana</span>
+                    </div>
+                    <div style="width: 100%; background-color: #eee; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <div style="width: 85%; background-color: #9b59b6; height: 100%; border-radius: 5px;"></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: bold; color: #3498db;">Cumplimiento</span>
+                        <span style="font-weight: bold; color: #27ae60;">+5% esta semana</span>
+                    </div>
+                    <div style="width: 100%; background-color: #eee; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <div style="width: 92%; background-color: #3498db; height: 100%; border-radius: 5px;"></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: bold; color: #e74c3c;">Consistencia</span>
+                        <span style="font-weight: bold; color: #27ae60;">+5% esta semana</span>
+                    </div>
+                    <div style="width: 100%; background-color: #eee; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <div style="width: 76%; background-color: #e74c3c; height: 100%; border-radius: 5px;"></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="font-weight: bold; color: #2ecc71;">Carga</span>
+                        <span style="font-weight: bold; color: #7f8c8d;">Sin cambios</span>
+                    </div>
+                    <div style="width: 100%; background-color: #eee; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <div style="width: 80%; background-color: #2ecc71; height: 100%; border-radius: 5px;"></div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h4 class="info-title">Análisis de Datos EPIC</h4>
+                    <p>Los datos del sistema muestran mejoras en tres de los cuatro componentes EPIC durante la última semana. El mayor incremento se observa en los componentes de Cumplimiento (+5%) y Consistencia (+5%), lo que indica un buen patrón de entregas a tiempo y una distribución más equilibrada del trabajo académico.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p class="generated-date">Reporte generado por Classity el 19/05/2025 a las 15:30 hrs.</p>
+            <p><strong>Saludos de Secundaria Cedros</strong></p>
+            <p>Para visualizar todos los datos académicos y análisis completos, visite <a href="https://app.classity.com">Classity</a></p>
+        </div>
+    </div>
+</body>
+</html>
