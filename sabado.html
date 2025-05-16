@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte de Fin de Semana: Sábado - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      .summary-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4a6fa5;
+      }
+
+      .summary-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #4a6fa5;
+      }
+
+      .summary-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .summary-item {
+        flex: 1 0 30%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .summary-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .summary-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .weekend-assignments .section-header {
+        background-color: #3498db;
+      }
+
+      .performance-context .section-header {
+        background-color: #9b59b6;
+      }
+
+      .submission-patterns .section-header {
+        background-color: #e67e22;
+      }
+
+      .weekend-activities .section-header {
+        background-color: #e74c3c;
+      }
+
+      .upcoming-items .section-header {
+        background-color: #27ae60;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Assignment cards */
+      .assignment-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .assignment-card {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid;
+      }
+
+      .card-high-priority {
+        border-color: #e74c3c;
+      }
+
+      .card-medium-priority {
+        border-color: #f39c12;
+      }
+
+      .card-low-priority {
+        border-color: #3498db;
+      }
+
+      .assignment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .assignment-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+        color: #2c3e50;
+      }
+
+      .due-date {
+        font-weight: bold;
+        color: #e74c3c;
+        text-align: right;
+      }
+
+      .due-date.soon {
+        color: #f39c12;
+      }
+
+      .due-date.later {
+        color: #3498db;
+      }
+
+      .assignment-subject {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin: 0 0 10px 0;
+      }
+
+      .assignment-description {
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .assignment-metadata {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-top: 10px;
+      }
+
+      /* Performance context */
+      .distribution-container {
+        margin: 20px 0;
+      }
+
+      .distribution-chart {
+        height: 180px;
+        width: 100%;
+        position: relative;
+        margin: 20px 0 30px;
+        border-bottom: 2px solid #ddd;
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .dist-bar {
+        flex: 1;
+        margin: 0 2px;
+        background-color: #eee;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .student-marker {
+        position: absolute;
+        bottom: -10px;
+        left: 72%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #e74c3c;
+        transform: translateX(-50%) rotate(180deg);
+      }
+
+      .dist-scale {
+        display: flex;
+        justify-content: space-between;
+        color: #666;
+        font-size: 12px;
+      }
+
+      .distribution-note {
+        text-align: center;
+        color: #4a6fa5;
+        font-weight: bold;
+        margin: 15px 0;
+      }
+
+      /* Performance indicators */
+      .performance-indicators {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+
+      .indicator {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .indicator-filled {
+        background-color: #4a6fa5;
+      }
+
+      .indicator-empty {
+        background-color: #ddd;
+      }
+
+      /* Submission patterns */
+      .pattern-chart {
+        margin: 20px 0;
+      }
+
+      .pattern-row {
+        display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+      }
+
+      .pattern-label {
+        width: 120px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .pattern-bar-container {
+        flex-grow: 1;
+        height: 15px;
+        background-color: #eee;
+        border-radius: 7.5px;
+        overflow: hidden;
+      }
+
+      .pattern-bar {
+        height: 100%;
+        background-color: #3498db;
+        border-radius: 7.5px;
+      }
+
+      .pattern-value {
+        width: 50px;
+        text-align: right;
+        font-size: 14px;
+        color: #666;
+        margin-left: 10px;
+      }
+
+      /* Weekend plans */
+      .weekend-plan {
+        margin-top: 15px;
+      }
+
+      .weekend-day {
+        margin-bottom: 20px;
+      }
+
+      .day-header {
+        font-weight: bold;
+        color: #4a6fa5;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .activity-items {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .activity-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border-left: 3px solid #4a6fa5;
+      }
+
+      .activity-name {
+        font-weight: bold;
+        margin: 0 0 5px 0;
+      }
+
+      .activity-subject {
+        color: #7f8c8d;
+        font-size: 14px;
+      }
+
+      /* Calendar preview */
+      .mini-calendar {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+
+      .mini-calendar th {
+        padding: 8px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        color: #4a6fa5;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .mini-calendar td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        vertical-align: top;
+        height: 80px;
+      }
+
+      .today-cell {
+        background-color: #e8f4f8;
+      }
+
+      .weekend-cell {
+        background-color: #f8f9fa;
+      }
+
+      .cal-date {
+        text-align: right;
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+
+      .cal-event {
+        background-color: #e8f4fd;
+        font-size: 11px;
+        padding: 3px;
+        border-radius: 3px;
+        margin-bottom: 3px;
+        border-left: 2px solid #3498db;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .cal-assignment {
+        background-color: #fadbd8;
+        border-left-color: #e74c3c;
+      }
+
+      .cal-exam {
+        background-color: #fcf3cf;
+        border-left-color: #f39c12;
+      }
+
+      .cal-project {
+        background-color: #d4efdf;
+        border-left-color: #27ae60;
+      }
+
+      /* EPIC graphs */
+      .epic-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+      }
+
+      .epic-score {
+        font-size: 48px;
+        font-weight: bold;
+        color: #4a6fa5;
+        margin: 10px 0;
+      }
+
+      .epic-components {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        width: 100%;
+      }
+
+      .epic-component {
+        flex: 1 0 calc(50% - 15px);
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+      }
+
+      .component-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .component-name {
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .component-value {
+        font-weight: bold;
+      }
+
+      .component-value.excellent {
+        color: #27ae60;
+      }
+
+      .component-value.good {
+        color: #3498db;
+      }
+
+      .component-value.average {
+        color: #f39c12;
+      }
+
+      .component-value.poor {
+        color: #e74c3c;
+      }
+
+      .component-bar-container {
+        width: 100%;
+        height: 6px;
+        background-color: #eee;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .component-bar {
+        height: 100%;
+        border-radius: 3px;
+      }
+
+      .performance-bar {
+        background-color: #9b59b6;
+      }
+
+      .compliance-bar {
+        background-color: #3498db;
+      }
+
+      .consistency-bar {
+        background-color: #e74c3c;
+      }
+
+      .workload-bar {
+        background-color: #2ecc71;
+      }
+
+      /* View details button */
+      .view-in-classity {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .view-in-classity:hover {
+        background-color: #3d5c8c;
+      }
+
+      .analytics-insight {
+        background-color: #f1f9fe;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 15px;
+        border-left: 4px solid #3498db;
+      }
+
+      .analytics-title {
+        color: #3498db;
+        margin: 0 0 10px 0;
+        font-weight: bold;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .summary-item {
+          flex: 1 0 100%;
+        }
+
+        .student-name {
+          font-size: 18px;
+        }
+
+        .section-header {
+          font-size: 16px;
+        }
+
+        .epic-component {
+          flex: 1 0 100%;
+        }
+
+        .pattern-label {
+          width: 100px;
+        }
+
+        .mini-calendar th,
+        .mini-calendar td {
+          padding: 5px;
+          font-size: 12px;
+        }
+
+        .cal-event {
+          font-size: 9px;
+          padding: 2px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="/api/placeholder/180/80"
+            alt="Colegio Cedros"
+            class="logo"
+          />
+          <img
+            src="/api/placeholder/120/60"
+            alt="Classity"
+            class="classity-logo"
+          />
+        </div>
+        <h1>Reporte de Fin de Semana: Sábado</h1>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- Overview Summary -->
+      <div class="summary-container">
+        <h3 class="summary-title">Resumen de Actividades Pendientes</h3>
+        <div class="summary-data">
+          <div class="summary-item">
+            <div class="summary-label">Total Pendientes</div>
+            <div class="summary-value">6</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Vence en 48h</div>
+            <div class="summary-value">3</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Esta Semana</div>
+            <div class="summary-value">3</div>
+          </div>
+        </div>
+
+        <!-- EPIC Score Display -->
+        <div class="epic-container">
+          <h3 class="summary-title">Índice EPIC</h3>
+          <div class="epic-score">83%</div>
+
+          <div class="epic-components">
+            <div class="epic-component">
+              <div class="component-header">
+                <span class="component-name">Rendimiento</span>
+                <span class="component-value excellent">85%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar performance-bar"
+                  style="width: 85%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="epic-component">
+              <div class="component-header">
+                <span class="component-name">Cumplimiento</span>
+                <span class="component-value excellent">92%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar compliance-bar"
+                  style="width: 92%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="epic-component">
+              <div class="component-header">
+                <span class="component-name">Consistencia</span>
+                <span class="component-value average">75%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar consistency-bar"
+                  style="width: 75%"
+                ></div>
+              </div>
+            </div>
+
+            <div class="epic-component">
+              <div class="component-header">
+                <span class="component-name">Carga</span>
+                <span class="component-value good">80%</span>
+              </div>
+              <div class="component-bar-container">
+                <div
+                  class="component-bar workload-bar"
+                  style="width: 80%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View in Classity Button -->
+        <a
+          href="https://app.classity.com/student/weekend?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Panel Completo en Classity →</a
+        >
+      </div>
+
+      <!-- Weekend Assignments Section -->
+      <div class="section weekend-assignments">
+        <h3 class="section-header">
+          Actividades Pendientes Prioritarias
+          <span class="badge">Fin de Semana</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            A continuación se presentan las actividades pendientes organizadas
+            por fecha de vencimiento:
+          </p>
+
+          <div class="assignment-cards">
+            <div class="assignment-card card-high-priority">
+              <div class="assignment-header">
+                <h4 class="assignment-title">
+                  Proyecto: Modelado de Funciones
+                </h4>
+                <span class="due-date">Domingo 18/05</span>
+              </div>
+              <div class="assignment-subject">2. Matemáticas</div>
+              <p class="assignment-description">
+                Creación de modelos matemáticos para situaciones cotidianas
+                utilizando funciones lineales y cuadráticas.
+              </p>
+              <div class="assignment-metadata">
+                <span>Categoría: Proyecto</span>
+                <span>Peso: 15%</span>
+              </div>
+            </div>
+
+            <div class="assignment-card card-high-priority">
+              <div class="assignment-header">
+                <h4 class="assignment-title">
+                  Informe de Laboratorio: Reacciones Químicas
+                </h4>
+                <span class="due-date">Domingo 18/05</span>
+              </div>
+              <div class="assignment-subject">2. Química</div>
+              <p class="assignment-description">
+                Redacción del informe final sobre la práctica virtual de tipos
+                de reacciones químicas.
+              </p>
+              <div class="assignment-metadata">
+                <span>Categoría: Informe</span>
+                <span>Peso: 10%</span>
+              </div>
+            </div>
+
+            <div class="assignment-card card-high-priority">
+              <div class="assignment-header">
+                <h4 class="assignment-title">
+                  Investigación: Ecosistemas Terrestres
+                </h4>
+                <span class="due-date">Domingo 18/05</span>
+              </div>
+              <div class="assignment-subject">2. Biología</div>
+              <p class="assignment-description">
+                Complemento a la investigación de ecosistemas acuáticos,
+                enfocado en ecosistemas terrestres y su biodiversidad.
+              </p>
+              <div class="assignment-metadata">
+                <span>Categoría: Investigación</span>
+                <span>Peso: 12%</span>
+              </div>
+            </div>
+
+            <div class="assignment-card card-medium-priority">
+              <div class="assignment-header">
+                <h4 class="assignment-title">
+                  Proyecto Colaborativo: Presentación en Inglés
+                </h4>
+                <span class="due-date soon">Viernes 24/05</span>
+              </div>
+              <div class="assignment-subject">2. Inglés</div>
+              <p class="assignment-description">
+                Preparación de una presentación grupal sobre un tema cultural de
+                países angloparlantes.
+              </p>
+              <div class="assignment-metadata">
+                <span>Categoría: Proyecto</span>
+                <span>Peso: 15%</span>
+              </div>
+            </div>
+
+            <div class="assignment-card card-medium-priority">
+              <div class="assignment-header">
+                <h4 class="assignment-title">Examen Parcial: Biología</h4>
+                <span class="due-date soon">Miércoles 22/05</span>
+              </div>
+              <div class="assignment-subject">2. Biología</div>
+              <p class="assignment-description">
+                Evaluación sobre ecosistemas, biodiversidad e interacciones
+                entre especies.
+              </p>
+              <div class="assignment-metadata">
+                <span>Categoría: Examen</span>
+                <span>Peso: 20%</span>
+              </div>
+            </div>
+
+            <div class="assignment-card card-low-priority">
+              <div class="assignment-header">
+                <h4 class="assignment-title">
+                  Ejercicios: Notación Científica
+                </h4>
+                <span class="due-date later">Lunes 27/05</span>
+              </div>
+              <div class="assignment-subject">2. Física</div>
+              <p class="assignment-description">
+                Serie de ejercicios sobre conversión y operaciones con notación
+                científica.
+              </p>
+              <div class="assignment-metadata">
+                <span>Categoría: Ejercicios</span>
+                <span>Peso: 5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Context Section (New) -->
+      <div class="section performance-context">
+        <h3 class="section-header">
+          Desempeño en Contexto
+          <span class="badge">Análisis Comparativo</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Análisis del rendimiento académico actual en comparación con el
+            grupo:
+          </p>
+
+          <div class="distribution-container">
+            <div class="distribution-chart">
+              <div class="dist-bar" style="height: 20%"></div>
+              <div class="dist-bar" style="height: 35%"></div>
+              <div class="dist-bar" style="height: 60%"></div>
+              <div class="dist-bar" style="height: 85%"></div>
+              <div class="dist-bar" style="height: 100%"></div>
+              <div class="dist-bar" style="height: 80%"></div>
+              <div class="dist-bar" style="height: 55%"></div>
+              <div class="dist-bar" style="height: 35%"></div>
+              <div class="dist-bar" style="height: 15%"></div>
+
+              <!-- Student marker position -->
+              <div class="student-marker"></div>
+            </div>
+
+            <div class="dist-scale">
+              <span>6.0</span>
+              <span>6.5</span>
+              <span>7.0</span>
+              <span>7.5</span>
+              <span>8.0</span>
+              <span>8.5</span>
+              <span>9.0</span>
+              <span>9.5</span>
+              <span>10.0</span>
+            </div>
+          </div>
+
+          <div class="distribution-note">
+            Tu calificación promedio (8.7) es superior al 75% de los estudiantes
+            de tu grupo.
+          </div>
+
+          <div class="performance-indicators">
+            <div class="indicator indicator-filled">1</div>
+            <div class="indicator indicator-filled">2</div>
+            <div class="indicator indicator-filled">3</div>
+            <div class="indicator indicator-filled">4</div>
+            <div class="indicator indicator-empty">5</div>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              margin: 10px 0;
+              font-weight: bold;
+              color: #4a6fa5;
+            "
+          >
+            Tu rendimiento académico te ubica en el segmento ALTO dentro de 2°
+            grado.
+          </div>
+
+          <div class="analytics-insight">
+            <h4 class="analytics-title">Análisis de Posición Relativa</h4>
+            <p>
+              Basado en tus calificaciones y entregas registradas en el sistema,
+              tu desempeño se encuentra en el rango superior, superando
+              aproximadamente al 75% de los estudiantes de tu grado.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submission Patterns Section (New) -->
+      <div class="section submission-patterns">
+        <h3 class="section-header">
+          Patrones de Entrega
+          <span class="badge">Análisis de Datos</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Análisis de tus patrones de entrega de actividades basado en datos
+            históricos:
+          </p>
+
+          <div class="pattern-chart">
+            <div class="pattern-row">
+              <div class="pattern-label">Mismo día</div>
+              <div class="pattern-bar-container">
+                <div class="pattern-bar" style="width: 68%"></div>
+              </div>
+              <div class="pattern-value">68%</div>
+            </div>
+
+            <div class="pattern-row">
+              <div class="pattern-label">1-2 días antes</div>
+              <div class="pattern-bar-container">
+                <div class="pattern-bar" style="width: 20%"></div>
+              </div>
+              <div class="pattern-value">20%</div>
+            </div>
+
+            <div class="pattern-row">
+              <div class="pattern-label">3+ días antes</div>
+              <div class="pattern-bar-container">
+                <div class="pattern-bar" style="width: 12%"></div>
+              </div>
+              <div class="pattern-value">12%</div>
+            </div>
+          </div>
+
+          <div class="analytics-insight">
+            <h4 class="analytics-title">Análisis de Patrones de Entrega</h4>
+            <p>
+              Los datos muestran que la mayoría de tus entregas (68%) ocurren el
+              mismo día del vencimiento. Las entregas con anticipación
+              representan el 32% del total.
+            </p>
+            <p>
+              Los datos también muestran que tus entregas a tiempo tienen una
+              mayor tasa de calificaciones óptimas (85%) comparado con las
+              entregas del último momento (72%).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekend Planning Section (Based on assignment data only) -->
+      <div class="section weekend-activities">
+        <h3 class="section-header">
+          Panorama del Fin de Semana
+          <span class="badge">17-18 Mayo</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Visión general de los próximos días basada en las fechas de entrega
+            registradas en el sistema:
+          </p>
+
+          <!-- Mini Calendar -->
+          <table class="mini-calendar">
+            <tr>
+              <th>Sábado (Hoy)</th>
+              <th>Domingo</th>
+              <th>Lunes</th>
+            </tr>
+            <tr>
+              <td class="today-cell">
+                <div class="cal-date">17/05</div>
+                <div class="cal-event cal-project">
+                  Preparación: Modelado de Funciones
+                </div>
+                <div class="cal-event cal-assignment">
+                  Preparación: Informe Química
+                </div>
+              </td>
+              <td class="weekend-cell">
+                <div class="cal-date">18/05</div>
+                <div class="cal-event cal-project">
+                  Vence: Proyecto Matemáticas
+                </div>
+                <div class="cal-event cal-assignment">
+                  Vence: Informe de Química
+                </div>
+                <div class="cal-event cal-assignment">
+                  Vence: Investigación Biología
+                </div>
+              </td>
+              <td>
+                <div class="cal-date">19/05</div>
+                <div class="cal-event">Reunión: Eq. Proyecto Inglés</div>
+                <div class="cal-event cal-exam">Prep: Examen Biología</div>
+              </td>
+            </tr>
+          </table>
+
+          <div class="analytics-insight">
+            <h4 class="analytics-title">Distribución de Actividades</h4>
+            <p>
+              Este fin de semana tiene una concentración importante de fechas de
+              entrega. El domingo vencen 3 actividades que representan un total
+              del 37% del peso para sus respectivas materias.
+            </p>
+            <p>
+              La próxima semana incluye actividades significativas como el
+              Examen Parcial de Biología (22/05) y la Presentación Grupal de
+              Inglés (24/05).
+            </p>
+          </div>
+
+          <!-- Assignment distribution by subject -->
+          <h4 style="color: #4a6fa5; margin: 20px 0 10px 0">
+            Distribución por Materia
+          </h4>
+
+          <div class="pattern-chart">
+            <div class="pattern-row">
+              <div class="pattern-label">Matemáticas</div>
+              <div class="pattern-bar-container">
+                <div
+                  class="pattern-bar"
+                  style="width: 33%; background-color: #27ae60"
+                ></div>
+              </div>
+              <div class="pattern-value">33%</div>
+            </div>
+
+            <div class="pattern-row">
+              <div class="pattern-label">Biología</div>
+              <div class="pattern-bar-container">
+                <div
+                  class="pattern-bar"
+                  style="width: 33%; background-color: #9b59b6"
+                ></div>
+              </div>
+              <div class="pattern-value">33%</div>
+            </div>
+
+            <div class="pattern-row">
+              <div class="pattern-label">Química</div>
+              <div class="pattern-bar-container">
+                <div
+                  class="pattern-bar"
+                  style="width: 17%; background-color: #f39c12"
+                ></div>
+              </div>
+              <div class="pattern-value">17%</div>
+            </div>
+
+            <div class="pattern-row">
+              <div class="pattern-label">Inglés</div>
+              <div class="pattern-bar-container">
+                <div
+                  class="pattern-bar"
+                  style="width: 17%; background-color: #3498db"
+                ></div>
+              </div>
+              <div class="pattern-value">17%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Items Section -->
+      <div class="section upcoming-items">
+        <h3 class="section-header">
+          Perspectiva de la Próxima Semana
+          <span class="badge">Vista de 7 Días</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Estas son las actividades registradas en el sistema para la próxima
+            semana:
+          </p>
+
+          <!-- Weekly Calendar View -->
+          <table class="mini-calendar">
+            <tr>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+            </tr>
+            <tr>
+              <td>
+                <div class="cal-date">20/05</div>
+                <div class="cal-event">Reunión: Equipo Inglés</div>
+              </td>
+              <td>
+                <div class="cal-date">21/05</div>
+                <div class="cal-event">Literatura Contemporánea</div>
+              </td>
+              <td>
+                <div class="cal-date">22/05</div>
+                <div class="cal-event cal-exam">Examen: Biología</div>
+              </td>
+              <td>
+                <div class="cal-date">23/05</div>
+                <div class="cal-event cal-project">Taller: Física</div>
+              </td>
+              <td>
+                <div class="cal-date">24/05</div>
+                <div class="cal-event cal-project">Presentación: Inglés</div>
+              </td>
+            </tr>
+          </table>
+
+          <div class="analytics-insight" style="margin-top: 20px">
+            <h4 class="analytics-title">Análisis de Carga Académica</h4>
+            <p>
+              La próxima semana muestra una distribución más equilibrada de
+              actividades comparada con la concentración de este fin de semana.
+              Los puntos más significativos son:
+            </p>
+            <ul style="margin: 10px 0; padding-left: 20px">
+              <li>
+                <strong>Miércoles:</strong> Examen parcial de Biología que
+                representa el 20% de la calificación trimestral.
+              </li>
+              <li>
+                <strong>Viernes:</strong> Presentación grupal de Inglés que
+                requiere coordinación con otros estudiantes.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="generated-date">
+          Reporte generado por Classity el 17/05/2025 a las 7:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.com">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

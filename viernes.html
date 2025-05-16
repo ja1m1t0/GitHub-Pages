@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Semanal: Viernes - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      .summary-container {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 5px solid #4a6fa5;
+      }
+
+      .summary-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #4a6fa5;
+      }
+
+      .summary-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .summary-item {
+        flex: 1 0 30%;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .summary-label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .summary-value {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .weekly-summary .section-header {
+        background-color: #9b59b6;
+      }
+
+      .strengths .section-header {
+        background-color: #2ecc71;
+      }
+
+      .improvements .section-header {
+        background-color: #e74c3c;
+      }
+
+      .weekend-plan .section-header {
+        background-color: #f39c12;
+      }
+
+      .position-evolution .section-header {
+        background-color: #3498db;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Progress cards */
+      .progress-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .progress-card {
+        flex: 1 0 calc(50% - 15px);
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .card-title {
+        font-weight: bold;
+        color: #4a6fa5;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .progress-value {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .positive {
+        color: #27ae60;
+      }
+
+      .warning {
+        color: #f39c12;
+      }
+
+      .negative {
+        color: #e74c3c;
+      }
+
+      .progress-bar-container {
+        width: 100%;
+        background-color: #eee;
+        border-radius: 10px;
+        height: 10px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+
+      .progress-bar {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      .progress-high {
+        background-color: #27ae60;
+      }
+
+      .progress-medium {
+        background-color: #f39c12;
+      }
+
+      .progress-low {
+        background-color: #e74c3c;
+      }
+
+      /* Subject performance */
+      .subject-progress {
+        margin-top: 20px;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+      }
+
+      .progress-title {
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .progress-chart {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      /* Strengths and improvements */
+      .highlight-item {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid;
+      }
+
+      .highlight-item.strength {
+        border-color: #2ecc71;
+      }
+
+      .highlight-item.improvement {
+        border-color: #e74c3c;
+      }
+
+      .highlight-title {
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .highlight-title.strength {
+        color: #2ecc71;
+      }
+
+      .highlight-title.improvement {
+        color: #e74c3c;
+      }
+
+      .highlight-metric {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Weekend plan */
+      .weekend-tasks {
+        margin: 15px 0;
+      }
+
+      .task-item {
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        border-left: 4px solid #f39c12;
+      }
+
+      .task-title {
+        font-weight: bold;
+        margin: 0 0 5px 0;
+        color: #4a6fa5;
+      }
+
+      .task-details {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .task-subject {
+        font-weight: bold;
+      }
+
+      /* Position Evolution */
+      .relative-position {
+        margin-top: 15px;
+      }
+
+      .position-subject {
+        margin-bottom: 20px;
+      }
+
+      .subject-title {
+        font-weight: bold;
+        color: #4a6fa5;
+        margin: 0 0 10px 0;
+      }
+
+      .position-chart {
+        width: 100%;
+        height: 60px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      .position-points {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+
+      .position-point {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: #ddd;
+        position: relative;
+      }
+
+      .position-point-label {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: #666;
+      }
+
+      .position-line {
+        position: absolute;
+        height: 2px;
+        background-color: #ddd;
+        left: 27px;
+        right: 27px;
+        z-index: 1;
+      }
+
+      .position-point.active {
+        background-color: #4a6fa5;
+        width: 18px;
+        height: 18px;
+        z-index: 2;
+      }
+
+      .position-point.active .position-point-label {
+        font-weight: bold;
+        color: #4a6fa5;
+      }
+
+      .position-trend {
+        font-size: 14px;
+        color: #666;
+        text-align: right;
+        font-style: italic;
+      }
+
+      .position-note {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #666;
+        font-style: italic;
+      }
+
+      /* View details button */
+      .view-in-classity {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .view-in-classity:hover {
+        background-color: #3d5c8c;
+      }
+
+      /* Student growth card */
+      .growth-card {
+        background-color: #f1f9fe;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .growth-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+
+      .growth-title {
+        font-weight: bold;
+        color: #4a6fa5;
+        font-size: 18px;
+        margin: 0;
+      }
+
+      .growth-value {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .growth-metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .growth-metric {
+        flex: 1 0 calc(33% - 10px);
+        text-align: center;
+      }
+
+      .growth-metric-label {
+        font-size: 12px;
+        color: #666;
+      }
+
+      .growth-metric-value {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* Comparison chart */
+      .comparison-chart {
+        width: 100%;
+        margin: 20px 0;
+        border-collapse: collapse;
+      }
+
+      .comparison-chart th {
+        padding: 8px;
+        text-align: left;
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #ddd;
+        color: #4a6fa5;
+      }
+
+      .comparison-chart td {
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .comparison-chart .highlight {
+        background-color: #f8f9fa;
+        font-weight: bold;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      /* Responsive adjustments */
+      @media only screen and (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .summary-item {
+          flex: 1 0 100%;
+        }
+
+        .student-name {
+          font-size: 18px;
+        }
+
+        .section-header {
+          font-size: 16px;
+        }
+
+        .progress-card {
+          flex: 1 0 100%;
+        }
+
+        .growth-metric {
+          flex: 1 0 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo -->
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="/api/placeholder/180/80"
+            alt="Colegio Cedros"
+            class="logo"
+          />
+          <img
+            src="/api/placeholder/120/60"
+            alt="Classity"
+            class="classity-logo"
+          />
+        </div>
+        <h1>Reporte Semanal: Viernes</h1>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- Weekly Summary Overview -->
+      <div class="summary-container">
+        <h3 class="summary-title">Resumen Semanal</h3>
+        <div class="summary-data">
+          <div class="summary-item">
+            <div class="summary-label">Completadas</div>
+            <div class="summary-value">9</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Pendientes</div>
+            <div class="summary-value">3</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Fin de Semana</div>
+            <div class="summary-value">3</div>
+          </div>
+        </div>
+
+        <!-- Growth Card -->
+        <div class="growth-card">
+          <div class="growth-header">
+            <h4 class="growth-title">Crecimiento Semanal</h4>
+            <span class="growth-value positive">+5%</span>
+          </div>
+          <div class="growth-metrics">
+            <div class="growth-metric">
+              <div class="growth-metric-label">Rendimiento</div>
+              <div class="growth-metric-value positive">+3%</div>
+            </div>
+            <div class="growth-metric">
+              <div class="growth-metric-label">Cumplimiento</div>
+              <div class="growth-metric-value positive">+7%</div>
+            </div>
+            <div class="growth-metric">
+              <div class="growth-metric-label">Consistencia</div>
+              <div class="growth-metric-value positive">+5%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- View in Classity Button -->
+        <a
+          href="https://app.classity.com/student/weekly-summary?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Panel Completo en Classity →</a
+        >
+      </div>
+
+      <!-- Weekly Summary Section -->
+      <div class="section weekly-summary">
+        <h3 class="section-header">
+          Resumen de la Semana
+          <span class="badge">13-17 Mayo 2025</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            El desempeño de Diego esta semana muestra mejoras significativas en
+            áreas clave, particularmente en su tasa de cumplimiento. A
+            continuación se presenta un análisis detallado de su rendimiento
+            académico:
+          </p>
+
+          <!-- Weekly Performance Metrics -->
+          <div class="progress-cards">
+            <div class="progress-card">
+              <div class="card-header">
+                <h4 class="card-title">Promedio Semanal</h4>
+                <span class="progress-value positive">8.5</span>
+              </div>
+              <p>Basado en 9 actividades calificadas</p>
+            </div>
+            <div class="progress-card">
+              <div class="card-header">
+                <h4 class="card-title">Tasa de Cumplimiento</h4>
+                <span class="progress-value positive">82%</span>
+              </div>
+              <p>+7% respecto a la semana anterior</p>
+            </div>
+          </div>
+
+          <!-- Subject Performance -->
+          <h4 class="summary-title">Rendimiento por Materia</h4>
+
+          <div class="subject-progress">
+            <div class="progress-header">
+              <span class="progress-title">Matemáticas</span>
+              <span class="progress-value positive">9.2</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-high" style="width: 92%"></div>
+            </div>
+          </div>
+
+          <div class="subject-progress">
+            <div class="progress-header">
+              <span class="progress-title">Español</span>
+              <span class="progress-value positive">8.8</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-high" style="width: 88%"></div>
+            </div>
+          </div>
+
+          <div class="subject-progress">
+            <div class="progress-header">
+              <span class="progress-title">Inglés</span>
+              <span class="progress-value positive">8.5</span>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar progress-high" style="width: 85%"></div>
+            </div>
+          </div>
+
+          <div class="subject-progress">
+            <div class="progress-header">
+              <span class="progress-title">Ciencias</span>
+              <span class="progress-value warning">7.8</span>
+            </div>
+            <div class="progress-bar-container">
+              <div
+                class="progress-bar progress-medium"
+                style="width: 78%"
+              ></div>
+            </div>
+          </div>
+
+          <div class="subject-progress">
+            <div class="progress-header">
+              <span class="progress-title">Historia</span>
+              <span class="progress-value warning">7.2</span>
+            </div>
+            <div class="progress-bar-container">
+              <div
+                class="progress-bar progress-medium"
+                style="width: 72%"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Completion Comparison -->
+          <h4 class="summary-title">Comparativa de Entregas</h4>
+
+          <table class="comparison-chart">
+            <tr>
+              <th>Categoría</th>
+              <th>Esta Semana</th>
+              <th>Semana Anterior</th>
+              <th>Cambio</th>
+            </tr>
+            <tr>
+              <td>A tiempo</td>
+              <td>8</td>
+              <td>6</td>
+              <td class="positive">+2</td>
+            </tr>
+            <tr>
+              <td>Entregadas tarde</td>
+              <td>1</td>
+              <td>3</td>
+              <td class="positive">-2</td>
+            </tr>
+            <tr>
+              <td>No entregadas</td>
+              <td>1</td>
+              <td>2</td>
+              <td class="positive">-1</td>
+            </tr>
+            <tr class="highlight">
+              <td>Total asignadas</td>
+              <td>12</td>
+              <td>11</td>
+              <td>+1</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Position Evolution Section (New) -->
+      <div class="section position-evolution">
+        <h3 class="section-header">
+          Evolución de Tu Posición Relativa
+          <span class="badge">Análisis de 10 Meses</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Este análisis muestra cómo ha evolucionado tu posición académica
+            relativa a lo largo del tiempo en diferentes materias:
+          </p>
+
+          <div class="relative-position">
+            <div class="position-subject">
+              <h4 class="subject-title">MATEMÁTICAS:</h4>
+              <p>Posición relativa en el grupo (Últimos 10 meses)</p>
+
+              <div class="position-chart">
+                <div class="position-line"></div>
+                <div class="position-points">
+                  <div class="position-point">
+                    <span class="position-point-label">65%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">68%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">72%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">75%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">75%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">80%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">85%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">88%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">92%</span>
+                  </div>
+                  <div class="position-point active">
+                    <span class="position-point-label">95%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="position-trend positive">MEJORA CONSTANTE</div>
+            </div>
+
+            <div class="position-subject">
+              <h4 class="subject-title">HISTORIA:</h4>
+              <p>Posición relativa en el grupo (Últimos 10 meses)</p>
+
+              <div class="position-chart">
+                <div class="position-line"></div>
+                <div class="position-points">
+                  <div class="position-point">
+                    <span class="position-point-label">55%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">58%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">60%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">57%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">55%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">52%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">48%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">45%</span>
+                  </div>
+                  <div class="position-point">
+                    <span class="position-point-label">50%</span>
+                  </div>
+                  <div class="position-point active">
+                    <span class="position-point-label">55%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="position-trend positive">RECUPERANDO POSICIÓN</div>
+            </div>
+
+            <div
+              style="
+                background-color: #e8f4fd;
+                border-radius: 5px;
+                padding: 15px;
+                margin-top: 20px;
+                border-left: 4px solid #3498db;
+              "
+            >
+              <h4 style="color: #3498db; margin-top: 0">
+                Análisis de Tendencia
+              </h4>
+              <p style="margin-bottom: 0">
+                Has logrado un avance constante en tu posición relativa en
+                Matemáticas a lo largo del año, pasando de estar por encima del
+                65% a superar al 95% de tus compañeros. En Historia, después de
+                una tendencia descendente, has comenzado a recuperar posición en
+                los últimos dos meses.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Strengths Section -->
+      <div class="section strengths">
+        <h3 class="section-header">
+          Fortalezas
+          <span class="badge">Áreas Destacadas</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            El análisis de esta semana ha identificado las siguientes áreas
+            donde Diego demuestra un rendimiento sobresaliente:
+          </p>
+
+          <div class="highlight-item strength">
+            <h4 class="highlight-title strength">
+              <span>Mejora en Entregas a Tiempo</span>
+              <span class="highlight-metric">+16% esta semana</span>
+            </h4>
+            <p>
+              Se observa una mejora significativa en la puntualidad de las
+              entregas. Este progreso ha contribuido notablemente al aumento del
+              componente de Cumplimiento en tu índice EPIC.
+            </p>
+          </div>
+
+          <div class="highlight-item strength">
+            <h4 class="highlight-title strength">
+              <span>Puntuación EPIC</span>
+              <span class="highlight-metric">+5% crecimiento</span>
+            </h4>
+            <p>
+              Tu calificación EPIC general ha mostrado una tendencia positiva,
+              lo que refleja mejoras en múltiples dimensiones de tu desempeño
+              académico.
+            </p>
+          </div>
+
+          <div class="highlight-item strength">
+            <h4 class="highlight-title strength">
+              <span>Tasa de Cumplimiento</span>
+              <span class="highlight-metric">82% esta semana</span>
+            </h4>
+            <p>
+              Tu tasa de cumplimiento está por encima del promedio grupal, lo
+              que demuestra un buen nivel de responsabilidad con las entregas de
+              actividades académicas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Improvements Section -->
+      <div class="section improvements">
+        <h3 class="section-header">
+          Áreas de Mejora
+          <span class="badge">Oportunidades</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Hemos identificado las siguientes áreas donde hay oportunidad de
+            mejorar el rendimiento académico:
+          </p>
+
+          <div class="highlight-item improvement">
+            <h4 class="highlight-title improvement">
+              <span>Consistencia en Estudio</span>
+              <span class="highlight-metric">75% - Patrón irregular</span>
+            </h4>
+            <p>
+              El análisis de patrones de trabajo muestra cierta concentración de
+              actividad académica en días específicos, con períodos de menor
+              actividad entre semana. Existe oportunidad para distribuir mejor
+              el tiempo de estudio.
+            </p>
+          </div>
+
+          <div class="highlight-item improvement">
+            <h4 class="highlight-title improvement">
+              <span>Relación Entregas Tardías/A Tiempo</span>
+              <span class="highlight-metric">12.5% entregas tardías</span>
+            </h4>
+            <p>
+              Aunque la tasa de entrega a tiempo es buena, un 12.5% de las
+              actividades fueron entregadas después de la fecha límite, lo que
+              afecta al componente de cumplimiento del EPIC.
+            </p>
+          </div>
+
+          <div class="highlight-item improvement">
+            <h4 class="highlight-title improvement">
+              <span>Carga de Trabajo</span>
+              <span class="highlight-metric">80% del promedio grupal</span>
+            </h4>
+            <p>
+              La carga de trabajo completada representa el 80% de la carga
+              promedio del grupo, lo que indica que hay oportunidad para abordar
+              más actividades de enriquecimiento académico.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekend Plan Section -->
+      <div class="section weekend-plan">
+        <h3 class="section-header">
+          Actividades Pendientes para el Fin de Semana
+          <span class="badge">Próximas Entregas</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            Las siguientes actividades tienen fechas de entrega cercanas y
+            podrían requerir atención durante el fin de semana:
+          </p>
+
+          <table class="comparison-chart">
+            <tr>
+              <th>Actividad</th>
+              <th>Materia</th>
+              <th>Fecha Límite</th>
+              <th>Estado</th>
+            </tr>
+            <tr>
+              <td>Proyecto: Modelado de Funciones</td>
+              <td>Matemáticas</td>
+              <td>17/05/2025</td>
+              <td>En progreso</td>
+            </tr>
+            <tr>
+              <td>Informe de Laboratorio: Reacciones Químicas</td>
+              <td>Química</td>
+              <td>18/05/2025</td>
+              <td>En progreso</td>
+            </tr>
+            <tr>
+              <td>Investigación: Ecosistemas Terrestres</td>
+              <td>Biología</td>
+              <td>18/05/2025</td>
+              <td>Pendiente</td>
+            </tr>
+          </table>
+
+          <div
+            style="
+              background-color: #f8f9fa;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+            "
+          >
+            <h4 style="color: #4a6fa5; margin-top: 0">
+              Distribución de Actividades
+            </h4>
+            <p>
+              Estas actividades tienen plazos de entrega durante el fin de
+              semana o principios de la próxima semana. La distribución adecuada
+              del tiempo ayudará a completarlas de manera efectiva.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Week Preview -->
+      <div class="section">
+        <h3 class="section-header" style="background-color: #3498db">
+          Vista Previa: Próxima Semana
+          <span class="badge">20-24 Mayo</span>
+        </h3>
+        <div class="section-content">
+          <p>
+            La próxima semana incluye importantes evaluaciones y entregas que
+            requieren preparación anticipada:
+          </p>
+
+          <table class="comparison-chart">
+            <tr>
+              <th>Día</th>
+              <th>Actividades Importantes</th>
+              <th>Recomendación</th>
+            </tr>
+            <tr>
+              <td><strong>Lunes</strong><br />20/05</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px">
+                  <li>Entrega Proyecto Biología</li>
+                  <li>Informe de Química</li>
+                </ul>
+              </td>
+              <td>Revisar documentos finales antes de la entrega.</td>
+            </tr>
+            <tr>
+              <td><strong>Martes</strong><br />21/05</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px">
+                  <li>Examen de Historia</li>
+                  <li>Ejercicios Inglés</li>
+                </ul>
+              </td>
+              <td>Estudiar procesos económicos históricos.</td>
+            </tr>
+            <tr>
+              <td><strong>Miércoles</strong><br />22/05</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px">
+                  <li>Exposición Español</li>
+                </ul>
+              </td>
+              <td>Practicar presentación oral.</td>
+            </tr>
+            <tr>
+              <td><strong>Jueves</strong><br />23/05</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px">
+                  <li>Laboratorio de Química</li>
+                  <li>Tarea de Física</li>
+                </ul>
+              </td>
+              <td>Repasar metodología de laboratorio.</td>
+            </tr>
+            <tr>
+              <td><strong>Viernes</strong><br />24/05</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px">
+                  <li>Proyecto Colaborativo Inglés</li>
+                </ul>
+              </td>
+              <td>Coordinar con equipo durante la semana.</td>
+            </tr>
+          </table>
+
+          <div
+            style="
+              background-color: #e8f4fd;
+              border-radius: 5px;
+              padding: 15px;
+              margin-top: 20px;
+              border-left: 4px solid #3498db;
+            "
+          >
+            <h4 style="color: #3498db; margin-top: 0">Próximas Actividades</h4>
+            <p>
+              El calendario muestra las siguientes actividades registradas para
+              la próxima semana:
+            </p>
+            <ul style="margin-bottom: 0">
+              <li>
+                <strong>Lunes 20/05:</strong> Reunión de Equipo: Proyecto de
+                Inglés
+              </li>
+              <li>
+                <strong>Miércoles 22/05:</strong> Examen Parcial: Biología
+              </li>
+              <li>
+                <strong>Viernes 24/05:</strong> Presentación Grupal: Inglés
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly Insights Section -->
+      <div class="section" style="margin-bottom: 30px">
+        <h3 class="section-header" style="background-color: #8e44ad">
+          Insight de la Semana
+          <span class="badge">Análisis Profundo</span>
+        </h3>
+        <div class="section-content">
+          <h4 style="color: #8e44ad; margin-top: 0">
+            Patrón de Entrega Identificado
+          </h4>
+
+          <p>
+            El análisis de datos históricos de entregas disponibles en el
+            sistema muestra patrones interesantes en relación con los tiempos de
+            entrega y rendimiento.
+          </p>
+
+          <div
+            style="
+              background-color: #f5eef8;
+              border-radius: 5px;
+              padding: 15px;
+              margin: 15px 0;
+              border-left: 4px solid #8e44ad;
+            "
+          >
+            <p style="margin: 0">
+              <strong>Análisis de Datos:</strong> La mayoría de entregas se
+              realizan dentro de las 24 horas antes del vencimiento. Las
+              entregas tempranas representan solo el 18% del total de
+              actividades completadas.
+            </p>
+          </div>
+
+          <p>
+            Los datos muestran que existe una correlación entre el momento de
+            entrega y diversos componentes del EPIC:
+          </p>
+
+          <ul style="margin-bottom: 0">
+            <li>
+              Las entregas tardías afectan directamente el componente de
+              Cumplimiento.
+            </li>
+            <li>
+              El componente de Consistencia refleja una distribución irregular
+              de actividad a lo largo de la semana.
+            </li>
+            <li>
+              El sistema registra mayor actividad académica los días cercanos a
+              fechas de vencimiento.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="generated-date">
+          Reporte generado por Classity el 17/05/2025 a las 15:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.com">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
