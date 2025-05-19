@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reporte Diario de Actividades - Classity</title>
+    <style>
+      /* Base styles with mobile-first approach */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Header styling */
+      .header {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 3px solid #4a6fa5;
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-right: 10px;
+      }
+
+      .classity-logo {
+        max-width: 120px;
+        height: auto;
+      }
+
+      .report-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0 5px;
+        color: #4a6fa5;
+      }
+
+      .report-date {
+        font-size: 16px;
+        color: #7f8c8d;
+        margin: 0 0 5px;
+      }
+
+      .powered-by {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+        text-align: center;
+      }
+
+      /* Student Information */
+      .student-info {
+        background-color: #4a6fa5;
+        color: white;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+
+      .student-name {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .student-email {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+      }
+
+      /* Section styling */
+      .section {
+        margin-bottom: 30px;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-header {
+        padding: 12px 15px;
+        border-radius: 5px 5px 0 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #4a6fa5;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 10px;
+      }
+
+      .section-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+        padding: 15px;
+        background-color: #fff;
+      }
+
+      /* Activity status styling */
+      .activities-status .section-header {
+        background-color: #e74c3c;
+      }
+
+      .deadline-card {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-left: 4px solid #ddd;
+      }
+
+      .today-card {
+        border-left-color: #e74c3c;
+      }
+
+      .tomorrow-card {
+        border-left-color: #f39c12;
+      }
+
+      .week-card {
+        border-left-color: #3498db;
+      }
+
+      .deadline-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .deadline-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+        color: #2c3e50;
+      }
+
+      .countdown {
+        font-weight: bold;
+        color: #e74c3c;
+      }
+
+      .countdown.medium {
+        color: #f39c12;
+      }
+
+      .countdown.safe {
+        color: #3498db;
+      }
+
+      .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .activity-item {
+        padding: 12px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        border-left: 3px solid #4a6fa5;
+      }
+
+      .activity-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      .activity-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0;
+        color: #2c3e50;
+      }
+
+      .activity-subject {
+        color: #7f8c8d;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .activity-description {
+        margin: 8px 0;
+        color: #555;
+        font-size: 14px;
+      }
+
+      .activity-metadata {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: #7f8c8d;
+        margin-top: 8px;
+        flex-wrap: wrap;
+      }
+
+      .activity-actions {
+        display: flex;
+        margin-top: 10px;
+        gap: 8px;
+      }
+
+      .activity-link {
+        display: inline-block;
+        padding: 6px 10px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 13px;
+        border-radius: 4px;
+      }
+
+      .classity-link {
+        background-color: #4a6fa5;
+        color: white;
+      }
+
+      .classroom-link {
+        background-color: #f8f9fa;
+        color: #666;
+        border: 1px solid #ddd;
+      }
+
+      .empty-state {
+        padding: 15px;
+        text-align: center;
+        color: #7f8c8d;
+        font-style: italic;
+      }
+
+      /* EPIC status styling */
+      .epic-status .section-header {
+        background-color: #9b59b6;
+      }
+
+      .epic-grid {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .epic-score-container {
+        text-align: center;
+        flex: 0 0 auto;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+      }
+
+      .epic-score {
+        font-size: 32px;
+        font-weight: bold;
+        color: #9b59b6;
+      }
+
+      .epic-label {
+        font-size: 14px;
+        color: #7f8c8d;
+        margin-top: 5px;
+      }
+
+      .epic-components {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .epic-component {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .component-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+
+      .component-value {
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .component-bar-container {
+        width: 100%;
+        height: 8px;
+        background-color: #eee;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .component-bar {
+        height: 100%;
+        border-radius: 4px;
+      }
+
+      .performance-bar {
+        background-color: #9b59b6;
+      }
+
+      .compliance-bar {
+        background-color: #3498db;
+      }
+
+      .consistency-bar {
+        background-color: #e74c3c;
+      }
+
+      .workload-bar {
+        background-color: #2ecc71;
+      }
+
+      /* Recent activity styling */
+      .recent-activity .section-header {
+        background-color: #27ae60;
+      }
+
+      .recent-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .stat-item {
+        text-align: center;
+        flex: 1;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+      }
+
+      .stat-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: #27ae60;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: #7f8c8d;
+      }
+
+      .recent-activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .recent-activity-list .activity-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+      }
+
+      .activity-time {
+        font-size: 13px;
+        color: #7f8c8d;
+        width: 70px;
+      }
+
+      .activity-content {
+        flex: 1;
+      }
+
+      .activity-status {
+        font-size: 13px;
+        padding: 3px 8px;
+        border-radius: 12px;
+        background-color: #d4efdf;
+        color: #27ae60;
+      }
+
+      /* Week preview styling */
+      .week-preview .section-header {
+        background-color: #3498db;
+      }
+
+      .calendar-strip {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 20px;
+        justify-content: space-between;
+      }
+
+      .calendar-day {
+        flex: 1;
+        text-align: center;
+        padding: 10px 5px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+      }
+
+      .calendar-day.active {
+        background-color: #e8f4fd;
+        border: 1px solid #3498db;
+      }
+
+      .day-name {
+        font-size: 14px;
+        font-weight: bold;
+        color: #7f8c8d;
+      }
+
+      .day-number {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      .day-events {
+        font-size: 12px;
+        color: #3498db;
+        font-weight: bold;
+      }
+
+      .day-events.has-events {
+        background-color: #3498db;
+        color: white;
+        border-radius: 10px;
+        padding: 2px 5px;
+        display: inline-block;
+      }
+
+      .week-intensity {
+        margin-top: 20px;
+      }
+
+      .intensity-label {
+        font-size: 14px;
+        color: #2c3e50;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .intensity-bar-container {
+        height: 15px;
+        background-color: #eee;
+        border-radius: 7.5px;
+        position: relative;
+        margin-bottom: 5px;
+        background-image: linear-gradient(to right, #2ecc71, #f39c12, #e74c3c);
+      }
+
+      .intensity-marker {
+        position: absolute;
+        top: -5px;
+        width: 15px;
+        height: 25px;
+        background-color: #3498db;
+        border-radius: 3px;
+        margin-left: -7.5px;
+      }
+
+      .intensity-marker:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #3498db;
+      }
+
+      .intensity-scale {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #7f8c8d;
+      }
+
+      /* Subject snapshot styling */
+      .subject-snapshot .section-header {
+        background-color: #f39c12;
+      }
+
+      .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .subject-card {
+        padding: 12px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .subject-name {
+        font-weight: bold;
+        font-size: 14px;
+        color: #2c3e50;
+      }
+
+      .subject-grade {
+        font-size: 22px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      .subject-grade.excellent {
+        color: #27ae60;
+      }
+
+      .subject-grade.good {
+        color: #3498db;
+      }
+
+      .subject-grade.warning {
+        color: #f39c12;
+      }
+
+      .subject-grade.poor {
+        color: #e74c3c;
+      }
+
+      .subject-pending {
+        font-size: 12px;
+        color: #7f8c8d;
+      }
+
+      /* Daily insight styling */
+      .daily-insight .section-header {
+        background-color: #1abc9c;
+      }
+
+      .insight-container {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .insight-icon {
+        font-size: 24px;
+        color: #1abc9c;
+        background-color: #e8f8f5;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .insight-text {
+        flex: 1;
+      }
+
+      .insight-text p {
+        margin: 0 0 5px 0;
+        font-size: 14px;
+        color: #2c3e50;
+      }
+
+      /* Footer styling */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+        margin-top: 20px;
+      }
+
+      .generated-date {
+        margin: 0 0 10px 0;
+      }
+
+      .view-in-classity {
+        display: block;
+        max-width: 300px;
+        margin: 15px auto;
+        padding: 12px 20px;
+        background-color: #4a6fa5;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 600px) {
+        .epic-grid {
+          flex-direction: column;
+        }
+
+        .epic-score-container {
+          width: 100%;
+        }
+
+        .subject-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .insight-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .insight-icon {
+          margin: 0 auto 10px;
+        }
+
+        .recent-stats {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .calendar-strip {
+          overflow-x: auto;
+          padding-bottom: 10px;
+        }
+
+        .calendar-day {
+          min-width: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="/api/placeholder/180/80"
+            alt="Colegio Cedros"
+            class="logo"
+          />
+          <img
+            src="/api/placeholder/120/60"
+            alt="Classity"
+            class="classity-logo"
+          />
+        </div>
+        <h1 class="report-title">Reporte Diario de Actividades</h1>
+        <p class="report-date">Jueves, 15 de Mayo de 2025</p>
+        <p class="powered-by">
+          Impulsado por Classity - Insights avanzados para el éxito académico
+        </p>
+      </div>
+
+      <!-- Student Information -->
+      <div class="student-info">
+        <h2 class="student-name">Diego Martínez Rodríguez</h2>
+        <p class="student-email">diego.martinez@colegiocedros.com</p>
+      </div>
+
+      <!-- Activities Status Section -->
+      <div class="section activities-status">
+        <h3 class="section-header">
+          Estado de Actividades
+          <span class="badge">Prioridades</span>
+        </h3>
+        <div class="section-content">
+          <!-- Pending activities for today -->
+          <div class="deadline-card today-card">
+            <div class="deadline-header">
+              <h4 class="deadline-title">Para Hoy</h4>
+              <span class="countdown">Vence hoy</span>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-header">
+                  <h5 class="activity-title">
+                    Present Perfect: Dialog Creation
+                  </h5>
+                  <span class="activity-subject">2. Inglés</span>
+                </div>
+                <p class="activity-description">
+                  Crear un diálogo utilizando al menos 5 ejemplos del Present
+                  Perfect en una situación cotidiana.
+                </p>
+                <div class="activity-metadata">
+                  <span>Fecha límite: 15/05/2025 23:59</span>
+                  <span>Categoría: Tarea</span>
+                </div>
+                <div class="activity-actions">
+                  <a href="#" class="activity-link classity-link"
+                    >Detalles en Classity</a
+                  >
+                  <a href="#" class="activity-link classroom-link"
+                    >Ver en Classroom</a
+                  >
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-header">
+                  <h5 class="activity-title">Examen: Funciones y Ecuaciones</h5>
+                  <span class="activity-subject">2. Matemáticas</span>
+                </div>
+                <p class="activity-description">
+                  Evaluación sobre funciones lineales, cuadráticas, sus
+                  gráficas, y ecuaciones relacionadas.
+                </p>
+                <div class="activity-metadata">
+                  <span>Fecha límite: 15/05/2025 10:30</span>
+                  <span>Categoría: Examen</span>
+                </div>
+                <div class="activity-actions">
+                  <a href="#" class="activity-link classity-link"
+                    >Detalles en Classity</a
+                  >
+                  <a href="#" class="activity-link classroom-link"
+                    >Ver en Classroom</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending activities for tomorrow -->
+          <div class="deadline-card tomorrow-card">
+            <div class="deadline-header">
+              <h4 class="deadline-title">Para Mañana</h4>
+              <span class="countdown medium">Vence mañana</span>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-header">
+                  <h5 class="activity-title">
+                    Cuestionario: La Revolución Industrial
+                  </h5>
+                  <span class="activity-subject">2. Historia</span>
+                </div>
+                <p class="activity-description">
+                  Responder el cuestionario sobre causas, desarrollo y
+                  consecuencias de la Revolución Industrial.
+                </p>
+                <div class="activity-metadata">
+                  <span>Fecha límite: 16/05/2025 14:00</span>
+                  <span>Categoría: Cuestionario</span>
+                </div>
+                <div class="activity-actions">
+                  <a href="#" class="activity-link classity-link"
+                    >Detalles en Classity</a
+                  >
+                  <a href="#" class="activity-link classroom-link"
+                    >Ver en Classroom</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending activities for this week -->
+          <div class="deadline-card week-card">
+            <div class="deadline-header">
+              <h4 class="deadline-title">Próximos Días</h4>
+              <span class="countdown safe">Esta semana</span>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-header">
+                  <h5 class="activity-title">
+                    Proyecto: Modelado de Funciones
+                  </h5>
+                  <span class="activity-subject">2. Matemáticas</span>
+                </div>
+                <p class="activity-description">
+                  Creación de modelos matemáticos para situaciones cotidianas
+                  utilizando funciones lineales y cuadráticas.
+                </p>
+                <div class="activity-metadata">
+                  <span>Fecha límite: 17/05/2025 23:59</span>
+                  <span>Categoría: Proyecto</span>
+                </div>
+                <div class="activity-actions">
+                  <a href="#" class="activity-link classity-link"
+                    >Detalles en Classity</a
+                  >
+                  <a href="#" class="activity-link classroom-link"
+                    >Ver en Classroom</a
+                  >
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-header">
+                  <h5 class="activity-title">
+                    Informe de Laboratorio: Reacciones Químicas
+                  </h5>
+                  <span class="activity-subject">2. Química</span>
+                </div>
+                <p class="activity-description">
+                  Redacción del informe final sobre la práctica virtual de tipos
+                  de reacciones químicas.
+                </p>
+                <div class="activity-metadata">
+                  <span>Fecha límite: 18/05/2025 23:59</span>
+                  <span>Categoría: Informe</span>
+                </div>
+                <div class="activity-actions">
+                  <a href="#" class="activity-link classity-link"
+                    >Detalles en Classity</a
+                  >
+                  <a href="#" class="activity-link classroom-link"
+                    >Ver en Classroom</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EPIC Status Overview -->
+      <div class="section epic-status">
+        <h3 class="section-header">
+          Índice de Desempeño Educativo
+          <span class="badge">Estado EPIC</span>
+        </h3>
+        <div class="section-content">
+          <div class="epic-grid">
+            <div class="epic-score-container">
+              <div class="epic-score">83%</div>
+              <div class="epic-label">EPIC Total</div>
+            </div>
+            <div class="epic-components">
+              <div class="epic-component">
+                <div class="component-label">
+                  <span>Rendimiento</span>
+                  <span class="component-value">85%</span>
+                </div>
+                <div class="component-bar-container">
+                  <div
+                    class="component-bar performance-bar"
+                    style="width: 85%"
+                  ></div>
+                </div>
+              </div>
+              <div class="epic-component">
+                <div class="component-label">
+                  <span>Cumplimiento</span>
+                  <span class="component-value">92%</span>
+                </div>
+                <div class="component-bar-container">
+                  <div
+                    class="component-bar compliance-bar"
+                    style="width: 92%"
+                  ></div>
+                </div>
+              </div>
+              <div class="epic-component">
+                <div class="component-label">
+                  <span>Consistencia</span>
+                  <span class="component-value">75%</span>
+                </div>
+                <div class="component-bar-container">
+                  <div
+                    class="component-bar consistency-bar"
+                    style="width: 75%"
+                  ></div>
+                </div>
+              </div>
+              <div class="epic-component">
+                <div class="component-label">
+                  <span>Carga</span>
+                  <span class="component-value">80%</span>
+                </div>
+                <div class="component-bar-container">
+                  <div
+                    class="component-bar workload-bar"
+                    style="width: 80%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity Status -->
+      <div class="section recent-activity">
+        <h3 class="section-header">
+          Actividad Reciente
+          <span class="badge">Últimas 48h</span>
+        </h3>
+        <div class="section-content">
+          <div class="recent-stats">
+            <div class="stat-item">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Entregadas</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Pendientes</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">100%</div>
+              <div class="stat-label">A tiempo</div>
+            </div>
+          </div>
+
+          <div class="recent-activity-list">
+            <div class="activity-item completed">
+              <div class="activity-time">Ayer 18:45</div>
+              <div class="activity-content">
+                <div class="activity-title">
+                  Ejercicios: Funciones y Gráficas
+                </div>
+                <div class="activity-subject">2. Matemáticas</div>
+              </div>
+              <div class="activity-status">Entregada</div>
+            </div>
+            <div class="activity-item completed">
+              <div class="activity-time">Ayer 16:12</div>
+              <div class="activity-content">
+                <div class="activity-title">Análisis de Texto "El Aleph"</div>
+                <div class="activity-subject">2. Español</div>
+              </div>
+              <div class="activity-status">Entregada</div>
+            </div>
+            <div class="activity-item completed">
+              <div class="activity-time">Anteayer 14:23</div>
+              <div class="activity-content">
+                <div class="activity-title">Problemas de Cinemática</div>
+                <div class="activity-subject">2. Física</div>
+              </div>
+              <div class="activity-status">Entregada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7-Day View -->
+      <div class="section week-preview">
+        <h3 class="section-header">
+          Vista 7 Días
+          <span class="badge">Panorama</span>
+        </h3>
+        <div class="section-content">
+          <div class="calendar-strip">
+            <div class="calendar-day active">
+              <div class="day-name">Jue</div>
+              <div class="day-number">15</div>
+              <div class="day-events has-events">2</div>
+            </div>
+            <div class="calendar-day">
+              <div class="day-name">Lun</div>
+              <div class="day-number">19</div>
+              <div class="day-events">0</div>
+            </div>
+            <div class="calendar-day">
+              <div class="day-name">Mar</div>
+              <div class="day-number">20</div>
+              <div class="day-events has-events">1</div>
+            </div>
+            <div class="calendar-day">
+              <div class="day-name">Mié</div>
+              <div class="day-number">21</div>
+              <div class="day-events has-events">1</div>
+            </div>
+          </div>
+
+          <div class="week-intensity">
+            <div class="intensity-label">Intensidad semanal</div>
+            <div class="intensity-bar-container">
+              <div class="intensity-marker" style="left: 60%"></div>
+            </div>
+            <div class="intensity-scale">
+              <span>Baja</span>
+              <span>Media</span>
+              <span>Alta</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subject Performance at a Glance -->
+      <div class="section subject-snapshot">
+        <h3 class="section-header">
+          Desempeño por Materia
+          <span class="badge">Resumen</span>
+        </h3>
+        <div class="section-content">
+          <div class="subject-grid">
+            <div class="subject-card">
+              <div class="subject-name">Matemáticas</div>
+              <div class="subject-grade excellent">9.2</div>
+              <div class="subject-pending">2 pendientes</div>
+            </div>
+            <div class="subject-card">
+              <div class="subject-name">Español</div>
+              <div class="subject-grade good">8.8</div>
+              <div class="subject-pending">0 pendientes</div>
+            </div>
+            <div class="subject-card">
+              <div class="subject-name">Inglés</div>
+              <div class="subject-grade good">8.5</div>
+              <div class="subject-pending">1 pendiente</div>
+            </div>
+            <div class="subject-card">
+              <div class="subject-name">Historia</div>
+              <div class="subject-grade warning">7.2</div>
+              <div class="subject-pending">1 pendiente</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engagement Insight -->
+      <div class="section daily-insight">
+        <h3 class="section-header">
+          Dato del Día
+          <span class="badge">Insight</span>
+        </h3>
+        <div class="section-content">
+          <div class="insight-container">
+            <div class="insight-icon">📊</div>
+            <div class="insight-text">
+              <p>
+                <strong>¿Sabías que?</strong> Las actividades de Matemáticas
+                entregadas con más de 24 horas de anticipación tienen un
+                promedio de calificación 15% mayor que las entregadas el mismo
+                día.
+              </p>
+              <p>
+                Tu componente de Consistencia ha mejorado un 5% en las últimas
+                dos semanas gracias a un patrón más regular de entregas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <a
+          href="https://app.classity.com/student/dashboard?id=diego.martinez"
+          class="view-in-classity"
+          >Ver Panel Completo en Classity →</a
+        >
+        <p class="generated-date">
+          Reporte generado el 15/05/2025 a las 06:30 hrs.
+        </p>
+        <p><strong>Saludos de Secundaria Cedros</strong></p>
+        <p>
+          Para visualizar todos los datos académicos y análisis completos,
+          visite <a href="https://app.classity.com">Classity</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
