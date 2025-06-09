@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding - Agenda tu Evento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f3f7 0%, #e8e2ec 100%);
+            color: #333;
+            line-height: 1.4;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .search-btn {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .empty-icon {
+            width: 64px;
+            height: 64px;
+            background: #f0f0f0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #999;
+        }
+
+        .empty-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .empty-description {
+            color: #666;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .add-event-btn {
+            background: linear-gradient(135deg, #d946ef, #f59e0b);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(217, 70, 239, 0.3);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 24px 20px;
+            max-width: 360px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+        }
+
+        .modal-icon.control {
+            background: #f8f9fa;
+            color: #495057;
+        }
+
+        .modal-icon.ai {
+            background: linear-gradient(135deg, #ec4899, #3b82f6);
+            color: white;
+        }
+
+        .modal-icon.central {
+            background: #f8f9fa;
+            color: #495057;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 16px 0 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .feature-icon {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .ai-highlight {
+            background: linear-gradient(135deg, #ec4899, #3b82f6);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 16px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .source-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .source-item {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+        }
+
+        .skip-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .btn-secondary {
+            background: #f1f3f4;
+            color: #333;
+            border: none;
+            border-radius: 18px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d946ef, #f59e0b);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #d946ef, #f59e0b);
+            color: white;
+            border: none;
+            border-radius: 22px;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            transition: background 0.2s;
+        }
+
+        .dot.active {
+            background: #d946ef;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background App -->
+    <div class="header">
+        <svg class="back-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m15 18-6-6 6-6"/>
+        </svg>
+        <div class="header-title">Eventos</div>
+        <svg class="search-btn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+        </svg>
+    </div>
+
+    <div class="empty-state">
+        <div class="empty-icon">📅</div>
+        <h2 class="empty-title">¡Aún no tienes eventos!</h2>
+        <p class="empty-description">Agenda tu primer evento y organízalo fácilmente.</p>
+        <button class="add-event-btn" onclick="startOnboarding()">+ Agendar mi evento</button>
+    </div>
+
+    <!-- Modal 1: Control Total -->
+    <div class="modal-overlay hidden" id="modal1">
+        <div class="modal">
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <div class="modal-icon control">🎯</div>
+            <h3 class="modal-title">Control Total</h3>
+            <p class="modal-subtitle">Gestiona todos tus compromisos y contactos</p>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">📅</span>
+                    <span>Calendario inteligente</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">👥</span>
+                    <span>Gestión de contactos</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <span>Estadísticas claras</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="skip-btn" onclick="skipOnboarding()">Saltar</button>
+                <button class="btn-primary" onclick="nextModal(2)">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Asistente AI -->
+    <div class="modal-overlay hidden" id="modal2">
+        <div class="modal">
+            <div class="progress-dots">
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <div class="modal-icon ai">🤖</div>
+            <h3 class="modal-title">Asistente con IA</h3>
+            <p class="modal-subtitle">Te mantiene informado y organizado</p>
+
+            <div class="ai-highlight">
+                "Siempre sabrás qué hacer a continuación"
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">🔔</span>
+                    <span>Recordatorios inteligentes</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💬</span>
+                    <span>Comunicación natural</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="skip-btn" onclick="skipOnboarding()">Saltar</button>
+                <button class="btn-primary" onclick="nextModal(3)">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Centralización -->
+    <div class="modal-overlay hidden" id="modal3">
+        <div class="modal">
+            <div class="progress-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+            </div>
+            
+            <div class="modal-icon central">🎪</div>
+            <h3 class="modal-title">Todo en un Lugar</h3>
+            <p class="modal-subtitle">Unifica eventos de cualquier canal</p>
+
+            <div class="source-grid">
+                <div class="source-item">📱 Redes</div>
+                <div class="source-item">📧 Email</div>
+                <div class="source-item">📞 Llamadas</div>
+                <div class="source-item">🤝 Referidos</div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="previousModal(2)">Anterior</button>
+                <div>
+                    <button class="skip-btn" onclick="skipOnboarding()">Saltar</button>
+                    <button class="btn-cta" onclick="finishOnboarding()">¡Comienza ya!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentModal = 0;
+        let isFirstTime = true;
+
+        function startOnboarding() {
+            currentModal = 1;
+            showModal(1);
+        }
+
+        function showModal(modalNumber) {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.add('hidden');
+            });
+            
+            document.getElementById(`modal${modalNumber}`).classList.remove('hidden');
+            currentModal = modalNumber;
+        }
+
+        function nextModal(modalNumber) {
+            showModal(modalNumber);
+        }
+
+        function previousModal(modalNumber) {
+            showModal(modalNumber);
+        }
+
+        function skipOnboarding() {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.add('hidden');
+            });
+            
+            alert('Navegando al flujo de "Agendar evento"...');
+        }
+
+        function finishOnboarding() {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.classList.add('hidden');
+            });
+            
+            alert('¡Onboarding completado! Navegando al flujo de "Agendar evento"...');
+        }
+
+        if (isFirstTime) {
+            setTimeout(() => {
+                startOnboarding();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
